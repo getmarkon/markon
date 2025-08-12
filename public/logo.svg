@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 868 876" version="1.1" xml:space="preserve" preserveAspectRatio="xMidYMid meet">
+  <defs id="defs1">
+    <linearGradient id="linearGradient43">
+      <stop style="stop-color:#f4c4f6;stop-opacity:1" offset="0.2"/>
+      <stop style="stop-color:#ccdbf7;stop-opacity:1" offset="1"/>
+    </linearGradient>
+    <radialGradient href="#linearGradient43" id="radialGradient44" cx="-13.55" cy="53.146" fx="-13.55" fy="53.146" r="17.468" gradientUnits="userSpaceOnUse" gradientTransform="matrix(1.453,0.036,-0.038,1.506,8.174,-26.415)"/>
+  </defs>
+  <g id="layer1" transform="translate(3426.89,-443.088)">
+    <g id="g3" style="display:inline;fill:#fd4400;stroke-width:1.334" transform="matrix(-24.866,0,0,-25.101,-2416.466,1252.762)">
+      <path id="path22" d="M 0.242,39.325 C 5.129,44.202 5.147,62.052 0.271,66.938 -4.606,71.825 -22.456,71.843 -27.342,66.967 -32.229,62.091 -32.247,44.24 -27.371,39.354 -22.494,34.467 -4.644,34.449 0.242,39.325 Z" transform="translate(36.718,-38.358)" style="fill:url(#radialGradient44);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.36;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"/>
+      <text id="text3-1" x="-37.304" y="-8.383" xml:space="preserve" transform="scale(-1.005,-0.995)" style="font-size:18.826px;line-height:1.25;font-family:'monospace';mix-blend-mode:color-burn;fill:#330066;stroke:#330066;stroke-width:1.362;stroke-dasharray:none">
+        <tspan id="tspan3-5" x="-37.304" y="-8.383" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Arimo Nerd Font';-inkscape-font-specification:'Arimo Nerd Font';fill:#330066;stroke:#330066;stroke-width:1.362;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill">M</tspan>
+      </text>
+      <path id="path1-2" d="M 14.642,8.789 V 20.789 m 0,0 -5,-5 m 5,5 5,-5" stroke="#000" stroke-width="2.668" stroke-linecap="round" stroke-linejoin="round" style="mix-blend-mode:color-burn;fill:#8866dd;stroke:#330066;stroke-opacity:1"/>
+    </g>
+  </g>
+</svg>

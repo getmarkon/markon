@@ -1,0 +1,393 @@
+:root {
+	/* design tokens (few, reusable, all with alpha) */
+	--surface-0: oklch(19% 0.06 300 / 0.98);
+	--surface-1: oklch(22% 0.04 310 / 0.96);
+	--surface-2: oklch(26% 0.12 290 / 0.94);
+	--text: oklch(92% 0.03 310 / 0.96);
+	--primary: oklch(81% 0.1 240 / 0.92);
+	/* --secondary: oklch(70% 0.05 260 / 0.9); */
+  --secondary: oklch(40% 0.2 300 / 0.9);
+	--accent: oklch(86% 0.13 230 / 0.9);
+	--overlay: oklch(27% 0.06 300 / 0.28);
+	--muted: oklch(70% 0.03 260 / 0.5);
+	--mdw: clamp(600px, 86ch, 700px);
+	--column-hint: color-mix(in oklab, var(--text) 22%, transparent);
+
+	--shadow-1: 0 0 20px currentColor;
+	--shadow-2: 0 0 24px color-mix(in oklab, currentColor 32%, transparent);
+}
+
+html {
+	font-family: "Monaspace Krypton", system-ui, Helvetica, Arial, sans-serif;
+	line-height: 1.5;
+	font-weight: 400;
+	color: var(--text);
+	background: var(--surface-0);
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	min-height: 100%;
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+	background: var(--surface-0);
+}
+
+* {
+	scrollbar-width: thin;
+	scrollbar-color: var(--muted) transparent;
+}
+
+#bar {
+	position: fixed;
+	inset-inline: 0;
+	top: 0;
+	height: 70px;
+	display: grid;
+	grid-template-columns: auto 1fr;
+	align-items: center;
+	gap: 12px;
+	padding: 0 12px;
+	backdrop-filter: blur(10px) saturate(120%);
+	background: color-mix(in oklab, var(--surface-0) 8%, transparent);
+  box-shadow: 0 0 30px var(--surface-2);
+  /* border-bottom: solid 10px var(--surface-2); */
+	z-index: 100;
+}
+
+#brand {
+	font-weight: 700;
+	font-family: Bungee, monospace;
+  font-size: 1.2rem;
+	letter-spacing: 0.5px;
+	display: grid;
+	grid-auto-flow: column;
+	place-items: center;
+	gap: 12px;
+  text-shadow: 0 0 14px #ee0055;
+  background: linear-gradient(45deg, #6100ee, #ee0055);
+  background-clip: text;
+  color: transparent;
+}
+
+#actions {
+	display: grid;
+	grid-auto-flow: column;
+	gap: 8px;
+	justify-content: end;
+	min-width: 0;
+}
+
+button::before {
+  content: '';
+  width: 50%;
+  height: 50%;
+  left: 25%;
+  position: absolute;
+  background: currentColor;
+  filter: blur(30px);
+}
+button {
+	all: unset;
+	display: grid;
+	grid-auto-flow: column;
+	align-items: center;
+	justify-content: center;
+	padding: 6px 12px;
+	border-radius: 14px;
+	border: none;
+	color: var(--accent);
+	background: color-mix(in oklab, var(--surface-1) 60%, transparent);
+	backdrop-filter: blur(16px);
+	cursor: pointer;
+	/* box-shadow: var(--shadow-1); */
+	mix-blend-mode: screen;
+	white-space: nowrap;
+	min-width: 0;
+}
+
+button span {
+	line-height: 1;
+	display: none;
+}
+
+@media (min-width: 1000px) {
+	button span {
+		display: inline;
+	}
+}
+
+button:hover {
+	background: color-mix(in oklab, var(--surface-2) 80%, transparent);
+	box-shadow: var(--shadow-2);
+}
+button:active {
+	transform: translateY(1px);
+}
+button iconify-icon {
+	opacity: 0.9;
+	mix-blend-mode: lighten;
+}
+
+/* Toggle buttons state colors */
+button.toggle {
+	color: var(--muted);
+}
+button.toggle[aria-pressed="true"] {
+	color: var(--primary);
+}
+button#copy-to-clipboard   { color: #22BB11; }
+button#load-from-clipboard { color: #FF9922; }
+button#save-to-file        { color: #FF4488; }
+button#load-from-file      { color: #BB44AA; }
+button#toggle-raw          { color: #6655FF; }
+button#toggle-spell        { color: #00AA88; }
+button#github              { color: #1199CC; }
+
+#wrap {
+	position: fixed;
+	top: 48px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: grid;
+	grid-template-columns: 1fr 0px 0px;
+	background: var(--surface-0);
+}
+
+#editor {
+	position: relative;
+	min-width: 0;
+	overflow: auto;
+	background: var(--surface-0);
+	max-width: 100%;
+	container-type: inline-size;
+}
+
+.milkdown .ProseMirror {
+	background-image: linear-gradient(
+		to bottom,
+		var(--surface-2),
+		var(--surface-0)
+	);
+	background-size: 30px 100%;
+	background-position: calc(60% + var(--mdw) / 2) 0;
+	background-repeat: no-repeat;
+}
+
+#editor > * {
+	height: 100%;
+}
+
+/* Ensure markdown content doesn't overflow horizontally */
+.milkdown {
+	padding-inline: 1em;
+}
+.milkdown .ProseMirror {
+	max-width: 100%;
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+	overflow-x: hidden;
+}
+.milkdown .ProseMirror > * {
+	max-width: none;
+	margin-inline: 0;
+}
+
+/* Prevent code blocks from causing horizontal scroll */
+.milkdown pre,
+.milkdown code {
+	max-width: 100%;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+
+/* Ensure tables don't overflow */
+.milkdown table {
+	max-width: 100%;
+	overflow-x: auto;
+	display: block;
+}
+
+#raw {
+	display: grid;
+	grid-template-columns: 1fr;
+	box-shadow: -1px 0 0 color-mix(in oklab, var(--text) 10%, transparent);
+	overflow: hidden;
+}
+
+#raw[hidden] {
+	display: none;
+}
+
+#rawtxt {
+	width: 100%;
+	height: 100%;
+	resize: none;
+	border: 0;
+	outline: none;
+	padding: 10px;
+	background: var(--surface-2);
+  color: var(--primary);
+	font-family:
+		"Monaspace Krypton", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+		"Liberation Mono", "Courier New", monospace;
+	font-size: 13px;
+	overflow: auto;
+}
+
+#split {
+	width: 10px;
+	cursor: col-resize;
+	background: transparent;
+	position: relative;
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: none;
+}
+
+#split::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: var(--secondary);
+	transition: background 0.15s ease;
+}
+
+#split:hover::before {
+	background: color-mix(in oklab, var(--text) 12%, transparent);
+}
+#split.active::before {
+	background: color-mix(in oklab, var(--text) 22%, transparent);
+}
+
+*::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+*::-webkit-scrollbar-thumb {
+	background: var(--muted);
+	border-radius: 8px;
+	border: 2px solid transparent;
+	background-clip: content-box;
+}
+*::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+#toast {
+	position: fixed;
+	bottom: 16px;
+	left: 50%;
+  color: var(--accent);
+	transform: translateX(-50%);
+	background: var(--surface-2);
+	padding: 8px 12px;
+	border-radius: 12px;
+	box-shadow: inset 0 0 8px currentColor, 0 0 30px currentColor;
+	backdrop-filter: blur(6px);
+	z-index: 1100;
+}
+
+.milkdown {
+	height: 100%;
+}
+.milkdown {
+	--crepe-font-title: "Monaspace Neon", serif;
+	--crepe-font-default: "Monaspace Argon", sans-serif;
+	--crepe-font-code: "Monaspace Krypton", Courier;
+
+	--crepe-color-background: var(--surface-0);
+	--crepe-color-on-background: var(--text);
+	--crepe-color-surface: var(--surface-1);
+	--crepe-color-surface-low: var(--surface-2);
+	--crepe-color-on-surface: var(--text);
+	--crepe-color-on-surface-variant: color-mix(
+		in oklab,
+		var(--text) 70%,
+		transparent
+	);
+	--crepe-color-outline: var(--muted);
+	--crepe-color-primary: var(--primary);
+	--crepe-color-secondary: var(--secondary);
+	--crepe-color-on-secondary: var(--text);
+	--crepe-color-inverse: var(--text);
+	--crepe-color-on-inverse: var(--surface-0);
+	--crepe-color-inline-code: color-mix(in oklab, var(--accent) 80%, var(--text));
+	--crepe-color-error: oklch(60% 0.25 20 / 0.9);
+	--crepe-color-hover: color-mix(in oklab, var(--surface-2) 85%, transparent);
+	--crepe-color-selected: color-mix(in oklab, var(--surface-2) 95%, transparent);
+	--crepe-color-inline-area: var(--surface-1);
+	--crepe-shadow-1: var(--shadow-1);
+	--crepe-shadow-2: var(--shadow-2);
+
+	.crepe-placeholder {
+		background: var(--overlay);
+		border-radius: 10px;
+		padding: 4px;
+	}
+}
+
+/* editor text affordances */
+.milkdown strong {
+	font-weight: 700;
+	text-shadow: 0 0 6px color-mix(in oklab, currentColor 25%, transparent);
+}
+.milkdown em {
+	font-style: italic;
+}
+.milkdown s,
+.milkdown del {
+	text-decoration: line-through;
+}
+.ProseMirror .prosemirror-virtual-cursor {
+	border-left: 3px solid color-mix(in oklab, var(--accent) 70%, transparent);
+	width: 100%;
+	background: var(--overlay);
+}
+
+/* splash */
+#splash {
+	position: fixed;
+	inset: 0;
+	display: grid;
+	place-items: center;
+	background: var(--surface-0);
+	color: var(--text);
+	z-index: 1000;
+	gap: 16px;
+}
+#splash-brand {
+	font-weight: 800;
+	letter-spacing: 0.5px;
+	font-size: clamp(28px, 5vw, 42px);
+	opacity: 0.9;
+}
+
+/* hide splash when editor is ready */
+html.ready #splash {
+	display: none;
+}
+
+/* CodeMirror inside Milkdown */
+.milkdown .cm-editor .cm-content {
+	caret-color: var(--accent);
+}
+.milkdown .cm-editor .cm-cursor {
+	border-left-color: var(--accent) !important;
+	border-left-width: 2px;
+}
+.milkdown .cm-editor .cm-line.cm-activeLine {
+	background: color-mix(in oklab, var(--text) 8%, transparent);
+	position: relative;
+}
+.milkdown .cm-editor .cm-activeLineGutter {
+	background: color-mix(in oklab, var(--text) 5%, transparent);
+}
+.milkdown .cm-editor .cm-selectionBackground {
+	background: color-mix(in oklab, var(--accent) 25%, transparent) !important;
+}

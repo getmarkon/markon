@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>markon</title>
+  <style>
+    :root { --bg: #111; --fg: #f4f4f4; }
+    #splash { position: fixed; inset: 0; display: grid; place-items: center; background: var(--bg); color: var(--fg); z-index: 1000; gap: 16px; }
+    #splash-brand { font-weight: 800; letter-spacing: 0.5px; font-size: clamp(28px, 5vw, 42px); opacity: 0.9; }
+    html.ready #splash { display: none; }
+  </style>
+  <meta name="description" content="Minimal Distraction‑free Markdown editor" />
+  <meta name="author" content="metaory">
+  <meta property="og:url" content="https://metaory.github.io/markon/">
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="markon" />
+  <meta property="og:description" content="Minimal Distraction‑free Markdown editor" />
+  <meta property="og:image" content="/screenshot.png" />
+  <meta property="og:image" content="https://metaory.github.io/markon/screenshot.png">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="markon" />
+  <meta name="twitter:description" content="Minimal Distraction‑free Markdown editor" />
+  <meta name="twitter:image" content="https://metaory.github.io/markon/screenshot.png" />
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#331155" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#331155" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#331155">
+</head>
+
+<body>
+  <div id="splash"><img src="/logo.png" width="160" alt=""/><div id="splash-brand">markon</div></div>
+  <div id="bar" hidden>
+    <div id="brand">
+      <img src="/logo.png" height="50" alt=""/>
+      markon
+    </div>
+    <div id="actions"></div>
+  </div>
+  <div id="wrap" hidden>
+    <div id="editor"></div>
+    <div id="split" hidden aria-label="Resize"></div>
+    <aside id="raw" hidden><textarea id="rawtxt" readonly></textarea></aside>
+  </div>
+  <div id="toast" hidden></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
