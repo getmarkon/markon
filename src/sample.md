@@ -6,7 +6,22 @@
   Minimal, distraction‑free <strong>Markdown</strong> editor
 </div>
 
+<!--
+
+https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
+https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/organizing-information-with-collapsed-sections
+https://github.com/github/docs/blob/main/content/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax.md?plain=1 
+
+-->
+
 <!-- This content will not appear in the rendered Markdown -->
+
+---
+
+<div align="center">
+  <h1>⸢HEADINGS⸥</h1>
+  <h2>⸢HEADINGS⸥</h2>
+</div>
 
 # A first-level heading
 
@@ -20,8 +35,20 @@
 
 ###### A sixth-level heading
 
+> [!NOTE]
+> Useful information that users should know, even when skimming content.
+
 > [!TIP]
-> You can use icons from any collection
+> Helpful advice for doing things better or more easily.
+
+> [!IMPORTANT]
+> Key information users need to know to achieve their goal.
+
+> [!WARNING]
+> Urgent info that needs immediate user attention to avoid problems.
+
+> [!CAUTION]
+> Advises about risks or negative outcomes of certain actions.
 
 <details>
 
@@ -81,5 +108,6 @@ greet('world')
 ---
 
 ![screenshot](https://github.com/metaory/markon/blob/master/public/screenshot.png?raw=true)
+
 
 

@@ -9,6 +9,24 @@
 	--accent: oklch(86% 0.13 230 / 1);
 	--overlay: oklch(27% 0.06 300 / 0.28);
 	--highlight: #ee0055;
+
+	/* base16 for editor tokens */
+	--base00: var(--surface-0);
+	--base01: var(--surface-1);
+	--base02: var(--surface-2);
+	--base03: color-mix(in oklab, var(--text) 50%, transparent);
+	--base04: color-mix(in oklab, var(--text) 65%, transparent);
+	--base05: var(--text);
+	--base06: color-mix(in oklab, var(--text) 85%, transparent);
+	--base07: color-mix(in oklab, var(--text) 95%, transparent);
+	--base08: #ff5577; /* red/keyword */
+	--base09: #ffaa55; /* orange/number */
+	--base0A: #ffee77; /* yellow/attr */
+	--base0B: #55dd99; /* green/string */
+	--base0C: #33ccdd; /* aqua/type */
+	--base0D: #66aaff; /* blue/function */
+	--base0E: #bb88ff; /* purple/regex */
+	--base0F: #cc9977; /* brown/special */
 	/* layout tokens */
 	--bar-h: 50px;
 	--radius: 12px;
@@ -88,6 +106,8 @@ body {
 	gap: 12px;
 	text-shadow: 0 0 14px var(--highlight);
 	background: linear-gradient(45deg, #6100ee, var(--highlight));
+	/* text-shadow: 0 0 14px #009900; */
+	/* background: linear-gradient(45deg, #009900, #EEAAFF); */
 	background-clip: text;
 	color: transparent;
 }
@@ -395,6 +415,26 @@ button#github {
 	font-family:
 		"Monaspace Krypton", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
 		"Liberation Mono", "Courier New", monospace;
+}
+
+/* GitHub-style keyboard keys */
+#previewhtml kbd {
+	display: inline-block;
+	padding: 2px 6px;
+	font: 600 0.86em/1.2 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+	color: var(--text);
+	background: color-mix(in oklab, var(--text) 8%, transparent);
+	border: 1px solid color-mix(in oklab, var(--text) 25%, transparent);
+	border-bottom-color: color-mix(in oklab, var(--text) 35%, transparent);
+	border-radius: 6px;
+	box-shadow:
+		0 1px 0 color-mix(in oklab, var(--text) 30%, transparent),
+		inset 0 -1px 0 color-mix(in oklab, var(--text) 20%, transparent);
+	vertical-align: middle;
+	white-space: nowrap;
+}
+#previewhtml kbd + kbd {
+	margin-left: 4px;
 }
 
 /* preview tables */
