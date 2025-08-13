@@ -25,7 +25,7 @@
 			"quoteStyle": "single",
 			"attributePosition": "multiline",
 			"semicolons": "asNeeded",
-			"lineWidth": 100
+			"lineWidth": 120
 		}
 	},
 	"assist": {

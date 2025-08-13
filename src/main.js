@@ -13,7 +13,7 @@ import { createEditor } from './editor.js'
 import { aliasToModule, coreImporters, moduleToPackage } from './hl.js'
 import { initUI } from './ui.js'
 import './style.css'
-// Pre-resolve hljs language modules so Vite transforms them (avoids runtime bare specifier issues)
+
 // IMPORTANT: use the dependency specifier path, not a relative node_modules path
 const moduleToImporter = coreImporters
 
@@ -52,9 +52,7 @@ const resolveModule = alias => {
 	return aliasToModule?.[k] || (k === 'html' ? 'xml' : k)
 }
 const getLang = el =>
-	resolveModule(
-		(Array.from(el.classList).find(c => c.startsWith('language-')) || '').replace('language-', ''),
-	)
+	resolveModule((Array.from(el.classList).find(c => c.startsWith('language-')) || '').replace('language-', ''))
 const unique = arr => Array.from(new Set(arr))
 const registerLang = async modName => {
 	if (!modName || hljs.getLanguage(modName)) return
@@ -81,8 +79,7 @@ const highlightAll = root => {
 	for (const code of selectBlocks(root)) {
 		const modName = getLang(code)
 		if (modName) {
-			for (const cls of Array.from(code.classList))
-				if (cls.startsWith('language-')) code.classList.remove(cls)
+			for (const cls of Array.from(code.classList)) if (cls.startsWith('language-')) code.classList.remove(cls)
 			code.classList.add(`language-${modName}`)
 		}
 		hljs.highlightElement(code)

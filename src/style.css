@@ -4,14 +4,15 @@
 	--bg-1: oklch(22% 0.04 310 / 1);
 	--bg-2: oklch(26% 0.12 290 / 1);
 	--fg: oklch(92% 0.03 310 / 1);
-	--brand: oklch(81% 0.1 240 / 1);
+	--brand: oklch(40% 0.2 300 / 1);
 	--hint: oklch(70% 0.03 260 / 0.5);
 	--accent: oklch(86% 0.13 230 / 1);
 	--overlay: oklch(27% 0.06 300 / 0.28);
+	--highlight: #ee0055;
 	/* layout tokens */
-	--bar-h: 70px;
+	--bar-h: 50px;
 	--radius: 12px;
-	--pad: 12px;
+	--pad: 8px;
 
 	/* aliases */
 	--surface-0: var(--bg-0);
@@ -85,8 +86,8 @@ body {
 	grid-auto-flow: column;
 	place-items: center;
 	gap: 12px;
-	text-shadow: 0 0 14px #ee0055;
-	background: linear-gradient(45deg, #6100ee, #ee0055);
+	text-shadow: 0 0 14px var(--highlight);
+	background: linear-gradient(45deg, #6100ee, var(--highlight));
 	background-clip: text;
 	color: transparent;
 }
@@ -147,6 +148,11 @@ button.toggle {
 }
 button.toggle[aria-pressed="true"] {
 	color: var(--primary);
+}
+/* emphasize spell toggle when active */
+button#toggle-spell[aria-pressed="true"] {
+	background: color-mix(in oklab, var(--accent) 18%, transparent);
+	box-shadow: var(--shadow-2);
 }
 button#copy-to-clipboard {
 	color: #22bb11;
@@ -270,10 +276,10 @@ button#github {
 }
 
 #split:hover::before {
-	background: color-mix(in oklab, var(--text) 12%, transparent);
+	background: var(--brand);
 }
 #split.active::before {
-	background: color-mix(in oklab, var(--text) 22%, transparent);
+	background: var(--highlight);
 }
 
 *::-webkit-scrollbar {

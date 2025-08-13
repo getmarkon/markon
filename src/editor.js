@@ -5,6 +5,7 @@ import { languages } from '@codemirror/language-data'
 import { EditorState } from '@codemirror/state'
 import { EditorView, keymap } from '@codemirror/view'
 import { tags as t } from '@lezer/highlight'
+import sample from './sample.js'
 
 const hlStyle = HighlightStyle.define(
 	[
@@ -76,7 +77,7 @@ export const createEditor = async () => {
 		mountIfNeeded()
 	}
 
-	make('# hello\n\nType here...')
+	make(sample)
 
 	const getMarkdown = () => view.state.doc.toString()
 	const setMarkdown = markdown => {

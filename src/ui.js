@@ -1,4 +1,3 @@
-// extracted from actions.js to a shorter, single-word module name
 export const $ = sel => document.getElementById(sel)
 export const el = (tag, attrs = {}) => Object.assign(document.createElement(tag), attrs)
 
@@ -12,6 +11,7 @@ const makeToast =
 			toast.hidden = true
 		}, ms)
 	}
+
 const copySmart = async (text, notify) => {
 	const fallback = () => {
 		const ta = el('textarea', { value: text, style: 'position:fixed;opacity:0' })
@@ -110,24 +110,10 @@ export const initUI = ({ getMarkdown, setMarkdown }) => {
 	const getPrefTheme = () =>
 		localStorage.getItem('theme') ||
 		(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
-	const setThemeIcon = theme => {
-		const btn = document.getElementById('toggle-theme')
-		if (!btn) return
-		const iconEl = btn.querySelector('iconify-icon')
-		if (!iconEl) return
-		const isLight = theme === 'light'
-		iconEl.setAttribute(
-			'icon',
-			isLight
-				? 'line-md:sunny-filled-loop-to-moon-filled-alt-loop-transition'
-				: 'line-md:moon-filled-to-sunny-filled-loop-transition',
-		)
-	}
 	const applyTheme = theme => {
 		const isLight = theme === 'light'
 		document.documentElement.classList.toggle('light', isLight)
 		localStorage.setItem('theme', isLight ? 'light' : 'dark')
-		setThemeIcon(theme)
 	}
 	applyTheme(getPrefTheme())
 	const setRawOpen = open => {
@@ -144,6 +130,14 @@ export const initUI = ({ getMarkdown, setMarkdown }) => {
 		const root = document.querySelector('.cm-content')
 		if (!root) return
 		root.setAttribute('spellcheck', on ? 'true' : 'false')
+	}
+
+	const setButtonIcon = (btnOrId, iconName) => {
+		const btn = typeof btnOrId === 'string' ? document.getElementById(btnOrId) : btnOrId
+		if (!btn) return
+		const iconEl = btn.querySelector('iconify-icon')
+		if (!iconEl) return
+		iconEl.setAttribute('icon', iconName)
 	}
 
 	const buttons = [
@@ -198,7 +192,10 @@ export const initUI = ({ getMarkdown, setMarkdown }) => {
 		[
 			'toggle-theme',
 			'',
-			'tabler:moon-filled',
+			[
+				'line-md:moon-filled-to-sunny-filled-loop-transition',
+				'line-md:sunny-filled-loop-to-moon-filled-alt-loop-transition',
+			],
 			pressed => {
 				applyTheme(pressed ? 'light' : 'dark')
 				showToast(pressed ? 'light' : 'dark')
@@ -217,10 +214,12 @@ export const initUI = ({ getMarkdown, setMarkdown }) => {
 		[
 			'toggle-raw',
 			'',
-			'mynaui:panel-right-open-solid',
-			pressed => setRawOpen(pressed),
+			['mynaui:panel-right-close-solid', 'mynaui:panel-right-open-solid'],
+			pressed => {
+				setRawOpen(pressed)
+			},
 			true,
-			false,
+			true,
 		],
 	]
 
@@ -231,12 +230,16 @@ export const initUI = ({ getMarkdown, setMarkdown }) => {
 			btn.classList.add('toggle')
 			btn.setAttribute('aria-pressed', String(pressedDefault))
 		}
-		btn.appendChild(el('iconify-icon', { icon, width: '40' }))
+		const iconName = Array.isArray(icon)
+			? (pressedDefault ? icon[1] : icon[0])
+			: icon
+		btn.appendChild(el('iconify-icon', { icon: iconName, width: '24' }))
 		btn.appendChild(el('span', { textContent: label }))
 		btn.addEventListener('click', e => {
 			if (!isToggle) return handler?.(e)
 			const next = btn.getAttribute('aria-pressed') !== 'true'
 			btn.setAttribute('aria-pressed', String(next))
+			if (Array.isArray(icon)) setButtonIcon(btn, next ? icon[1] : icon[0])
 			return handler?.(next)
 		})
 		actions.appendChild(btn)
@@ -270,7 +273,9 @@ export const initUI = ({ getMarkdown, setMarkdown }) => {
 	}
 	split.addEventListener('pointerdown', onDown)
 
-	setThemeIcon(getPrefTheme())
+	// ensure side preview reflects initial toggle state
+	const rawBtn = document.getElementById('toggle-raw')
+	if (rawBtn) setRawOpen(rawBtn.getAttribute('aria-pressed') === 'true')
 
 	return { previewHtml, showToast }
 }
