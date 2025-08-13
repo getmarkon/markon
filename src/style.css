@@ -1,43 +1,43 @@
 :root {
-    /* core palette */
-    --bg-0: oklch(19% 0.06 300 / 1);
-    --bg-1: oklch(22% 0.04 310 / 1);
-    --bg-2: oklch(26% 0.12 290 / 1);
-    --fg: oklch(92% 0.03 310 / 1);
-    --brand: oklch(81% 0.1 240 / 1);
-    --hint: oklch(70% 0.03 260 / 0.5);
-    --accent: oklch(86% 0.13 230 / 1);
-    --overlay: oklch(27% 0.06 300 / 0.28);
-    /* layout tokens */
-    --bar-h: 70px;
-    --radius: 12px;
-    --pad: 12px;
+	/* core palette */
+	--bg-0: oklch(19% 0.06 300 / 1);
+	--bg-1: oklch(22% 0.04 310 / 1);
+	--bg-2: oklch(26% 0.12 290 / 1);
+	--fg: oklch(92% 0.03 310 / 1);
+	--brand: oklch(81% 0.1 240 / 1);
+	--hint: oklch(70% 0.03 260 / 0.5);
+	--accent: oklch(86% 0.13 230 / 1);
+	--overlay: oklch(27% 0.06 300 / 0.28);
+	/* layout tokens */
+	--bar-h: 70px;
+	--radius: 12px;
+	--pad: 12px;
 
-    /* aliases */
-    --surface-0: var(--bg-0);
-    --surface-1: color-mix(in oklab, var(--bg-1) 96%, transparent);
-    --surface-2: color-mix(in oklab, var(--bg-2) 94%, transparent);
-    --text: var(--fg);
-    --primary: var(--brand);
-    --secondary: color-mix(in oklab, var(--brand) 40%, var(--bg-2));
-    --muted: var(--hint);
+	/* aliases */
+	--surface-0: var(--bg-0);
+	--surface-1: color-mix(in oklab, var(--bg-1) 96%, transparent);
+	--surface-2: color-mix(in oklab, var(--bg-2) 94%, transparent);
+	--text: var(--fg);
+	--primary: var(--brand);
+	--secondary: color-mix(in oklab, var(--brand) 40%, var(--bg-2));
+	--muted: var(--hint);
 
-    --shadow-1: 0 0 20px currentColor;
-    --shadow-2: 0 0 24px color-mix(in oklab, currentColor 32%, transparent);
+	--shadow-1: 0 0 20px currentColor;
+	--shadow-2: 0 0 24px color-mix(in oklab, currentColor 32%, transparent);
 }
 
 /* light theme override */
 html.light {
-    --bg-0: oklch(98% 0.01 300 / 1);
-    --bg-1: oklch(96% 0.02 300 / 1);
-    --bg-2: oklch(92% 0.04 290 / 1);
-    --fg: oklch(18% 0.03 300 / 1);
-    --brand: oklch(45% 0.18 260 / 1);
-    --accent: oklch(48% 0.2 230 / 1);
+	--bg-0: oklch(98% 0.01 300 / 1);
+	--bg-1: oklch(96% 0.02 300 / 1);
+	--bg-2: oklch(92% 0.04 290 / 1);
+	--fg: oklch(18% 0.03 300 / 1);
+	--brand: oklch(45% 0.18 260 / 1);
+	--accent: oklch(48% 0.2 230 / 1);
 }
 
 html {
-    font-family: "Monaspace Krypton", system-ui, Helvetica, Arial, sans-serif;
+	font-family: "Monaspace Krypton", system-ui, Helvetica, Arial, sans-serif;
 	line-height: 1.5;
 	font-weight: 400;
 	color: var(--text);
@@ -64,31 +64,31 @@ body {
 	position: fixed;
 	inset-inline: 0;
 	top: 0;
-    height: var(--bar-h);
+	height: var(--bar-h);
 	display: grid;
 	grid-template-columns: auto 1fr;
 	align-items: center;
 	gap: 12px;
-    padding: 0 var(--pad);
-    backdrop-filter: blur(10px) saturate(120%);
-    background: color-mix(in oklab, var(--surface-0) 8%, transparent);
-  box-shadow: 0 0 30px var(--surface-2);
+	padding: 0 var(--pad);
+	backdrop-filter: blur(10px) saturate(120%);
+	background: color-mix(in oklab, var(--surface-0) 8%, transparent);
+	box-shadow: 0 0 30px var(--surface-2);
 	z-index: 100;
 }
 
 #brand {
 	font-weight: 700;
 	font-family: Bungee, monospace;
-  font-size: 1.2rem;
+	font-size: 1.2rem;
 	letter-spacing: 0.5px;
 	display: grid;
 	grid-auto-flow: column;
 	place-items: center;
 	gap: 12px;
-  text-shadow: 0 0 14px #ee0055;
-  background: linear-gradient(45deg, #6100ee, #ee0055);
-  background-clip: text;
-  color: transparent;
+	text-shadow: 0 0 14px #ee0055;
+	background: linear-gradient(45deg, #6100ee, #ee0055);
+	background-clip: text;
+	color: transparent;
 }
 
 #actions {
@@ -105,8 +105,8 @@ button {
 	grid-auto-flow: column;
 	align-items: center;
 	justify-content: center;
-    padding: 6px var(--pad);
-    border-radius: var(--radius);
+	padding: 6px var(--pad);
+	border-radius: var(--radius);
 	border: none;
 	color: var(--accent);
 	background: color-mix(in oklab, var(--surface-1) 60%, transparent);
@@ -148,18 +148,34 @@ button.toggle {
 button.toggle[aria-pressed="true"] {
 	color: var(--primary);
 }
-button#copy-to-clipboard   { color: #22BB11; }
-button#load-from-clipboard { color: #FF9922; }
-button#save-to-file        { color: #FF4488; }
-button#load-from-file      { color: #BB44AA; }
-button#toggle-raw          { color: #6655FF; }
-button#toggle-spell        { color: #00AA88; }
-button#toggle-theme        { color: #ffaa00; }
-button#github              { color: #1199CC; }
+button#copy-to-clipboard {
+	color: #22bb11;
+}
+button#load-from-clipboard {
+	color: #ff9922;
+}
+button#save-to-file {
+	color: #ff4488;
+}
+button#load-from-file {
+	color: #bb44aa;
+}
+button#toggle-raw {
+	color: #6655ff;
+}
+button#toggle-spell {
+	color: #00aa88;
+}
+button#toggle-theme {
+	color: #ffaa00;
+}
+button#github {
+	color: #1199cc;
+}
 
 #wrap {
 	position: fixed;
-    top: var(--bar-h);
+	top: var(--bar-h);
 	left: 0;
 	right: 0;
 	bottom: 0;
@@ -169,19 +185,19 @@ button#github              { color: #1199CC; }
 }
 
 #editor {
-    position: relative;
-    min-width: 0;
-    overflow: auto;
-    background: var(--surface-0);
-    max-width: 100%;
-    container-type: inline-size;
+	position: relative;
+	min-width: 0;
+	overflow: auto;
+	background: var(--surface-0);
+	max-width: 100%;
+	container-type: inline-size;
 }
 
 .cm-editor {
-    height: 100%;
+	height: 100%;
 }
 .cm-editor .cm-scroller {
-    font-size: 14px;
+	font-size: 14px;
 }
 
 #editor > * {
@@ -189,25 +205,25 @@ button#github              { color: #1199CC; }
 }
 
 .cm-content {
-    padding-inline: 1em;
-    max-width: 100%;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    overflow-x: hidden;
+	padding-inline: 1em;
+	max-width: 100%;
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+	overflow-x: hidden;
 }
 
 .cm-content pre,
 .cm-content code {
-    max-width: 100%;
-    overflow-x: auto;
-    white-space: pre-wrap;
-    word-wrap: break-word;
+	max-width: 100%;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	word-wrap: break-word;
 }
 
 .cm-content table {
-    max-width: 100%;
-    overflow-x: auto;
-    display: block;
+	max-width: 100%;
+	overflow-x: auto;
+	display: block;
 }
 
 #preview {
@@ -224,15 +240,15 @@ button#github              { color: #1199CC; }
 #previewhtml {
 	width: 100%;
 	height: 100%;
-    overflow: auto;
-    border: 0;
-    outline: none;
-    padding: 16px;
-    background: var(--surface-2);
-    color: var(--text);
-    font-family: system-ui, Helvetica, Arial, sans-serif;
-    font-size: 15px;
-    line-height: 1.5;
+	overflow: auto;
+	border: 0;
+	outline: none;
+	padding: 16px;
+	background: var(--surface-2);
+	color: var(--text);
+	font-family: system-ui, Helvetica, Arial, sans-serif;
+	font-size: 15px;
+	line-height: 1.5;
 }
 
 #split {
@@ -278,12 +294,14 @@ button#github              { color: #1199CC; }
 	position: fixed;
 	bottom: 16px;
 	left: 50%;
-  color: var(--accent);
+	color: var(--accent);
 	transform: translateX(-50%);
 	background: var(--surface-2);
 	padding: 8px 12px;
-    border-radius: var(--radius);
-	box-shadow: inset 0 0 8px currentColor, 0 0 30px currentColor;
+	border-radius: var(--radius);
+	box-shadow:
+		inset 0 0 8px currentColor,
+		0 0 30px currentColor;
 	backdrop-filter: blur(6px);
 	z-index: 1100;
 }
@@ -306,24 +324,71 @@ button#github              { color: #1199CC; }
 /* removed old milkdown theme variables (unused) */
 
 /* preview typography */
-#previewhtml h1, #previewhtml h2, #previewhtml h3, #previewhtml h4, #previewhtml h5 {
+#previewhtml h1,
+#previewhtml h2,
+#previewhtml h3,
+#previewhtml h4,
+#previewhtml h5 {
 	margin-top: 1.2em;
 	margin-bottom: 0.4em;
 }
-#previewhtml h1 { font-size: 1.8em; line-height: 1.2; }
-#previewhtml h2 { font-size: 1.5em; line-height: 1.25; }
-#previewhtml h3 { font-size: 1.25em; line-height: 1.3; }
-#previewhtml h4 { font-size: 1.1em; }
-#previewhtml h5 { font-size: 1em; }
-#previewhtml p { margin: 0.6em 0; }
-#previewhtml a { color: var(--accent); text-decoration: underline; }
-#previewhtml ul, #previewhtml ol { margin: 0.6em 0 0.6em 1.2em; }
-#previewhtml blockquote { margin: 0.8em 0; padding-left: 1em; border-left: 3px solid color-mix(in oklab, var(--text) 20%, transparent); opacity: 0.9; }
-#previewhtml hr { border: none; height: 1px; background: color-mix(in oklab, var(--text) 20%, transparent); margin: 1em 0; }
-#previewhtml pre { background: color-mix(in oklab, var(--text) 8%, transparent); padding: 0.8em; border-radius: var(--radius); overflow: auto; }
-#previewhtml code { background: color-mix(in oklab, var(--text) 8%, transparent); padding: 0 0.3em; border-radius: 6px; }
-#previewhtml pre, #previewhtml code {
-    font-family: "Monaspace Krypton", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+#previewhtml h1 {
+	font-size: 1.8em;
+	line-height: 1.2;
+}
+#previewhtml h2 {
+	font-size: 1.5em;
+	line-height: 1.25;
+}
+#previewhtml h3 {
+	font-size: 1.25em;
+	line-height: 1.3;
+}
+#previewhtml h4 {
+	font-size: 1.1em;
+}
+#previewhtml h5 {
+	font-size: 1em;
+}
+#previewhtml p {
+	margin: 0.6em 0;
+}
+#previewhtml a {
+	color: var(--accent);
+	text-decoration: underline;
+}
+#previewhtml ul,
+#previewhtml ol {
+	margin: 0.6em 0 0.6em 1.2em;
+}
+#previewhtml blockquote {
+	margin: 0.8em 0;
+	padding-left: 1em;
+	border-left: 3px solid color-mix(in oklab, var(--text) 20%, transparent);
+	opacity: 0.9;
+}
+#previewhtml hr {
+	border: none;
+	height: 1px;
+	background: color-mix(in oklab, var(--text) 20%, transparent);
+	margin: 1em 0;
+}
+#previewhtml pre {
+	background: color-mix(in oklab, var(--text) 8%, transparent);
+	padding: 0.8em;
+	border-radius: var(--radius);
+	overflow: auto;
+}
+#previewhtml code {
+	background: color-mix(in oklab, var(--text) 8%, transparent);
+	padding: 0 0.3em;
+	border-radius: 6px;
+}
+#previewhtml pre,
+#previewhtml code {
+	font-family:
+		"Monaspace Krypton", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+		"Liberation Mono", "Courier New", monospace;
 }
 
 #splash {
@@ -347,7 +412,17 @@ html.ready #splash {
 	display: none;
 }
 
-.cm-cursor { border-left-color: var(--accent) !important; border-left-width: 2px; }
-.cm-line.cm-activeLine { background: color-mix(in oklab, var(--text) 8%, transparent); position: relative; }
-.cm-activeLineGutter { background: color-mix(in oklab, var(--text) 5%, transparent); }
-.cm-selectionBackground { background: color-mix(in oklab, var(--accent) 25%, transparent) !important; }
+.cm-cursor {
+	border-left-color: var(--accent) !important;
+	border-left-width: 2px;
+}
+.cm-line.cm-activeLine {
+	background: color-mix(in oklab, var(--text) 8%, transparent);
+	position: relative;
+}
+.cm-activeLineGutter {
+	background: color-mix(in oklab, var(--text) 5%, transparent);
+}
+.cm-selectionBackground {
+	background: color-mix(in oklab, var(--accent) 25%, transparent) !important;
+}

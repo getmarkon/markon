@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import pkg from './package.json' with { type: 'json' }
 
 export default defineConfig({
-    base: '/markon/',
+	base: '/markon/',
 	define: {
 		'import.meta.env.VERSION': JSON.stringify(pkg.version),
 	},

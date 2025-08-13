@@ -12,7 +12,33 @@
   </h3>
   <br>
   <img valign="middle" src="public/screenshot.png" alt="screenshot" width="96%" />
-  <br>
-  <hr>
-  <a href="LICENSE">MIT</a> © 2025 metaory 
 </div>
+
+---
+
+## Features
+
+- **Clipboard**: copy, paste
+- **File**: save, load
+- **Preview**: resizable split
+- **GFM**: GitHub Flavored Markdown
+- **Highlight**: 250+ langs, 500+ aliases
+- **Theme**: light/dark
+- **Spellcheck**: toggle spellcheck
+- **Local‑only**
+
+## Roadmap
+
+- **PWA**: installable, offline cache
+- **Autosave**: local persistence
+- **Export**: PDF/HTML
+- **Mobile**: touch gestures
+- **Shortcuts**: command palette, keybinds
+- **Theming**: custom CSS hook
+
+---
+
+## License
+
+[MIT](LICENSE)
+
