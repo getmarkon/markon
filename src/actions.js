@@ -94,18 +94,36 @@ const downloadText = (name, text) => {
 }
 
 export const initUI = ({ getMarkdown, setMarkdown }) => {
-    const [rawAside, rawText, split, wrap, toast, actions] = [
-        'raw',
-        'rawtxt',
+    const [previewAside, previewHtml, split, wrap, toast, actions] = [
+        'preview',
+        'previewhtml',
         'split',
         'wrap',
         'toast',
         'actions',
     ].map($)
-    rawText.value = getMarkdown()
+    previewHtml.innerHTML = ''
     const showToast = makeToast(toast)
+
+    const getPrefTheme = () =>
+        localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+    const setThemeIcon = theme => {
+        const btn = document.getElementById('toggle-theme')
+        if (!btn) return
+        const iconEl = btn.querySelector('iconify-icon')
+        if (!iconEl) return
+        const isLight = theme === 'light'
+        iconEl.setAttribute('icon', isLight ? 'line-md:sunny-filled-loop-to-moon-filled-alt-loop-transition' : 'line-md:moon-filled-to-sunny-filled-loop-transition')
+    }
+    const applyTheme = theme => {
+        const isLight = theme === 'light'
+        document.documentElement.classList.toggle('light', isLight)
+        localStorage.setItem('theme', isLight ? 'light' : 'dark')
+        setThemeIcon(theme)
+    }
+    applyTheme(getPrefTheme())
     const setRawOpen = open => {
-        rawAside.hidden = !open
+        previewAside.hidden = !open
         split.hidden = !open
         wrap.style.gridTemplateColumns = open ? '1fr 10px minmax(280px, 40vw)' : '1fr 0px 0px'
     }
@@ -113,7 +131,7 @@ export const initUI = ({ getMarkdown, setMarkdown }) => {
     const REPO = import.meta.env?.VITE_GITHUB || 'https://github.com/metaory/markon'
 
     const applySpell = (on = (document.getElementById('toggle-spell')?.getAttribute('aria-pressed') === 'true')) => {
-        const root = document.querySelector('.milkdown .ProseMirror')
+        const root = document.querySelector('.cm-content')
         if (!root) return
         root.setAttribute('spellcheck', on ? 'true' : 'false')
     }
@@ -169,6 +187,17 @@ export const initUI = ({ getMarkdown, setMarkdown }) => {
             true,
         ],
         [
+            'toggle-theme',
+            '',
+            'tabler:moon-filled',
+            pressed => {
+                applyTheme(pressed ? 'light' : 'dark')
+                showToast(pressed ? 'light' : 'dark')
+            },
+            true,
+            getPrefTheme() === 'light',
+        ],
+        [
             'github',
             '',
             'tabler:brand-github-filled',
@@ -176,7 +205,7 @@ export const initUI = ({ getMarkdown, setMarkdown }) => {
                 window.open(REPO, '_blank', 'noopener,noreferrer')
             },
         ],
-        ['toggle-raw', 'side', 'mynaui:panel-right-open-solid', pressed => setRawOpen(pressed), true, false],
+        ['toggle-raw', '', 'mynaui:panel-right-open-solid', pressed => setRawOpen(pressed), true, false],
     ]
 
     actions.innerHTML = ''
@@ -208,7 +237,7 @@ export const initUI = ({ getMarkdown, setMarkdown }) => {
     // resize without external mutable state
     const onDown = e => {
         const startX = e.clientX
-        const startWidth = rawAside.getBoundingClientRect().width
+        const startWidth = previewAside.getBoundingClientRect().width
         split.classList.add('active')
         const onMove = ev => {
             const dx = startX - ev.clientX
@@ -227,5 +256,8 @@ export const initUI = ({ getMarkdown, setMarkdown }) => {
     }
     split.addEventListener('pointerdown', onDown)
 
-    return { rawText, showToast }
+    // ensure theme icon matches current theme after buttons mount
+    setThemeIcon(getPrefTheme())
+
+    return { previewHtml, showToast }
 }

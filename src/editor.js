@@ -1,75 +1,78 @@
-import { Crepe } from '@milkdown/crepe'
-import { InputRule, inputRules } from '@milkdown/prose/inputrules'
-import { $prose } from '@milkdown/utils'
-import '@milkdown/crepe/theme/common/style.css'
+import { defaultKeymap, indentWithTab } from '@codemirror/commands'
+import { markdown } from '@codemirror/lang-markdown'
+import { HighlightStyle, syntaxHighlighting } from '@codemirror/language'
+import { languages } from '@codemirror/language-data'
+import { EditorState } from '@codemirror/state'
+import { EditorView, keymap } from '@codemirror/view'
+import { tags as t } from '@lezer/highlight'
+const hlStyle = HighlightStyle.define([
+    t.heading1 && { tag: t.heading1, color: 'var(--primary)', fontWeight: '800' },
+    t.heading2 && { tag: t.heading2, color: 'var(--primary)', fontWeight: '700' },
+    t.heading3 && { tag: t.heading3, color: 'var(--primary)', fontWeight: '600' },
+    t.strong && { tag: t.strong, color: 'var(--primary)', fontWeight: '700' },
+    t.emphasis && { tag: t.emphasis, color: 'var(--secondary)', fontStyle: 'italic' },
+    t.link && { tag: t.link, color: 'var(--accent)', textDecoration: 'underline' },
+    t.code && { tag: t.code, color: 'var(--text)', backgroundColor: 'color-mix(in oklab, var(--text) 12%, transparent)' },
+    t.quote && { tag: t.quote, color: 'var(--muted)' },
+].filter(Boolean))
+
+const themeExtension = () => EditorView.theme({
+        '&': { height: '100%' },
+        '.cm-scroller': { fontFamily: 'Monaspace Argon, ui-monospace, monospace', background: 'var(--surface-0)' },
+        '.cm-content': { caretColor: 'var(--accent)' },
+        '.cm-gutters': { background: 'transparent', border: 'none' },
+        '.cm-line': { color: 'var(--text)' },
+        '.cm-selectionBackground': { background: 'color-mix(in oklab, var(--accent) 25%, transparent)' },
+})
 
 export const createEditor = async () => {
-    let instance = null
-    const subscribers = []
+	let view = null
+	const subscribers = []
 
-    const mountIfNeeded = () => {
-        const html = document.documentElement
-        if (!html.classList.contains('ready')) html.classList.add('ready')
-        const bar = document.getElementById('bar')
-        const wrap = document.getElementById('wrap')
-        if (bar) bar.hidden = false
-        if (wrap) wrap.hidden = false
-    }
+	const mountIfNeeded = () => {
+		const html = document.documentElement
+		if (!html.classList.contains('ready')) html.classList.add('ready')
+		const bar = document.getElementById('bar')
+		const wrap = document.getElementById('wrap')
+		if (bar) bar.hidden = false
+		if (wrap) wrap.hidden = false
+	}
 
-    const wireSubscribers = () => {
-        if (!subscribers.length) return
-        instance.on(l => {
-            for (const fn of subscribers) l.markdownUpdated(fn)
-        })
-    }
+	const notify = () => {
+		if (!subscribers.length) return
+		const value = view.state.doc.toString()
+		for (const fn of subscribers) fn(value)
+	}
 
-	const make = async defaultValue => {
-		instance?.destroy?.()
-		instance = new Crepe({
-			root: '#editor',
-			defaultValue,
-			features: { [Crepe.Feature.ListItem]: true, [Crepe.Feature.Toolbar]: true },
-			featureConfigs: { [Crepe.Feature.LinkTooltip]: { inputPlaceholder: 'Enter URL...' } },
+	const make = defaultValue => {
+		view?.destroy?.()
+        const state = EditorState.create({
+			doc: defaultValue,
+				extensions: [
+					markdown({ codeLanguages: languages }),
+				keymap.of([indentWithTab, ...defaultKeymap]),
+				EditorView.lineWrapping,
+				EditorView.updateListener.of(v => { if (v.docChanged) notify() }),
+				themeExtension(),
+				syntaxHighlighting(hlStyle),
+			],
 		})
-		// link [text](url) input rule
-		const linkRule = new InputRule(/\[([^\]]+)\]\(([^)\s]+)\)$/, (state, match, start, end) => {
-			const [, label, href] = match
-			if (!label || !href) return null
-			const { schema, tr } = state
-			const link = schema.marks.link
-			if (!link) return null
-			const node = schema.text(label, [link.create({ href })])
-			return tr.replaceWith(start, end, node)
-		})
-		const linkInputRulePlugin = $prose(() => inputRules({ rules: [linkRule] }))
-		instance.editor.use(linkInputRulePlugin)
-		await instance.create()
+		view = new EditorView({ state, parent: document.querySelector('#editor') })
 		mountIfNeeded()
-		wireSubscribers()
-
-		// open links in new tab and prevent edit-time navigation
-        const root = document.querySelector('#editor')
-        root?.addEventListener('click', e => {
-            const a = e.target?.closest?.('a')
-            const href = a?.getAttribute?.('href')
-            if (!href) return
-            if (e.metaKey || e.ctrlKey) {
-                e.preventDefault()
-                window.open(href, '_blank', 'noopener,noreferrer')
-            }
-        })
 	}
 
-	await make('# hello\n\nType here...')
+	make('# hello\n\nType here...')
 
-	const getMarkdown = () => instance.getMarkdown()
-    const setMarkdown = async markdown => {
-        await make(markdown ?? '')
-    }
-	const onMarkdownUpdated = fn => {
-		subscribers.push(fn)
-		instance.on(l => l.markdownUpdated(fn))
+	const getMarkdown = () => view.state.doc.toString()
+	const setMarkdown = markdown => {
+		const doc = markdown ?? ''
+		const tr = view.state.update({ changes: { from: 0, to: view.state.doc.length, insert: doc } })
+		view.update([tr])
+		notify()
 	}
+    const onMarkdownUpdated = fn => subscribers.push(fn)
 
-    return { getMarkdown, setMarkdown, onMarkdownUpdated }
+	// No remount needed on theme change; CSS variables drive colors
+
+	return { getMarkdown, setMarkdown, onMarkdownUpdated }
 }

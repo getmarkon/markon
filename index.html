@@ -7,8 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>markon</title>
   <style>
-    :root { --bg: #111; --fg: #f4f4f4; }
-    #splash { position: fixed; inset: 0; display: grid; place-items: center; background: var(--bg); color: var(--fg); z-index: 1000; gap: 16px; }
+    /* minimal splash styles so it looks right before JS/CSS load */
+    #splash { position: fixed; inset: 0; display: grid; place-items: center; grid-auto-flow: row; gap: 16px; background: #111; color: #f4f4f4; z-index: 1000; }
     #splash-brand { font-weight: 800; letter-spacing: 0.5px; font-size: clamp(28px, 5vw, 42px); opacity: 0.9; }
     html.ready #splash { display: none; }
   </style>
@@ -39,11 +39,11 @@
     </div>
     <div id="actions"></div>
   </div>
-  <div id="wrap" hidden>
-    <div id="editor"></div>
-    <div id="split" hidden aria-label="Resize"></div>
-    <aside id="raw" hidden><textarea id="rawtxt" readonly></textarea></aside>
-  </div>
+    <div id="wrap" hidden>
+      <div id="editor"></div>
+      <div id="split" hidden aria-label="Resize"></div>
+      <aside id="preview" hidden><div id="previewhtml"></div></aside>
+    </div>
   <div id="toast" hidden></div>
   <script type="module" src="/src/main.js"></script>
 </body>

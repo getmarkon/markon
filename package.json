@@ -2,13 +2,14 @@
 	"name": "markon",
 	"private": true,
 	"description": "Minimal Distraction‑free Markdown editor",
-	"version": "0.0.2",
+	"version": "0.2.0",
 	"type": "module",
   "bugs": "https://github.com/metaory/markon/issues",
   "homepage": "https://metaory.github.io/markon/",
   "repository": "git+https://github.com/metaory/markon.git",
 	"scripts": {
 		"dev": "vite",
+		"gen:hljs": "node scripts/hljs-map.js",
 		"build": "vite build",
 		"preview": "vite preview"
 	},
@@ -19,8 +20,15 @@
 		"@fontsource/bungee": "^5.2.6",
 		"@fontsource/monaspace-argon": "^5.2.5",
 		"@fontsource/monaspace-krypton": "^5.2.5",
-		"@fontsource/monaspace-neon": "^5.2.5",
-		"@milkdown/crepe": "^7.15.3",
-		"iconify-icon": "3.0.0"
+		"iconify-icon": "3.0.0",
+		"marked": "^15.0.4",
+		"@codemirror/language": "^6.10.2",
+		"@codemirror/language-data": "^6.4.1",
+		"@lezer/highlight": "^1.2.0",
+		"@codemirror/state": "^6.4.1",
+		"@codemirror/view": "^6.34.2",
+		"@codemirror/lang-markdown": "^6.2.5",
+		"@codemirror/commands": "^6.6.2",
+		"highlight.js": "^11.9.0"
 	}
 }

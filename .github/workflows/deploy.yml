@@ -5,6 +5,7 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -25,11 +26,14 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 'latest'
+          node-version: '22.x'
           cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Generate HLJS map
+        run: npm run gen:hljs
 
       - name: Build
         run: npm run build
