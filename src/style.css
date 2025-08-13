@@ -124,7 +124,7 @@ button span {
 	display: none;
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 900px) {
 	button span {
 		display: inline;
 	}
@@ -396,6 +396,48 @@ button#github {
 		"Monaspace Krypton", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
 		"Liberation Mono", "Courier New", monospace;
 }
+
+/* preview tables */
+#previewhtml table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 0.8em 0;
+	font-size: 0.95em;
+}
+#previewhtml th,
+#previewhtml td {
+	border: 1px solid color-mix(in oklab, var(--text) 18%, transparent);
+	padding: 6px 8px;
+	text-align: left;
+}
+#previewhtml thead th {
+	background: color-mix(in oklab, var(--text) 10%, transparent);
+}
+#previewhtml tbody tr:nth-child(even) {
+	background: color-mix(in oklab, var(--text) 6%, transparent);
+}
+
+/* callouts (GitHub-style) */
+#previewhtml .callout {
+    border-left: 5px solid var(--brand);
+    background: color-mix(in oklab, var(--text) 8%, transparent);
+    padding: 10px 12px;
+    border-radius: var(--radius);
+    margin: 0.8em 0;
+}
+#previewhtml .callout::before {
+    content: attr(data-title);
+    display: block;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+}
+#previewhtml .callout[data-kind="note"] { border-color: var(--accent); }
+#previewhtml .callout[data-kind="tip"] { border-color: #00aa88; }
+#previewhtml .callout[data-kind="important"] { border-color: #ff4488; }
+#previewhtml .callout[data-kind="warning"] { border-color: #ffaa00; }
+#previewhtml .callout[data-kind="caution"] { border-color: #ff5555; }
 
 #splash {
 	position: fixed;

@@ -107,9 +107,7 @@ export const initUI = ({ getMarkdown, setMarkdown }) => {
 	previewHtml.innerHTML = ''
 	const showToast = makeToast(toast)
 
-	const getPrefTheme = () =>
-		localStorage.getItem('theme') ||
-		(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+    const getPrefTheme = () => localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
 	const applyTheme = theme => {
 		const isLight = theme === 'light'
 		document.documentElement.classList.toggle('light', isLight)
@@ -124,9 +122,7 @@ export const initUI = ({ getMarkdown, setMarkdown }) => {
 
 	const REPO = import.meta.env?.VITE_GITHUB || 'https://github.com/metaory/markon'
 
-	const applySpell = (
-		on = document.getElementById('toggle-spell')?.getAttribute('aria-pressed') === 'true',
-	) => {
+    const applySpell = (on = document.getElementById('toggle-spell')?.getAttribute('aria-pressed') === 'true') => {
 		const root = document.querySelector('.cm-content')
 		if (!root) return
 		root.setAttribute('spellcheck', on ? 'true' : 'false')
@@ -140,13 +136,8 @@ export const initUI = ({ getMarkdown, setMarkdown }) => {
 		iconEl.setAttribute('icon', iconName)
 	}
 
-	const buttons = [
-		[
-			'copy-to-clipboard',
-			'copy',
-			'solar:copy-bold-duotone',
-			() => copySmart(getMarkdown(), showToast),
-		],
+    const buttons = [
+        ['copy-to-clipboard', 'copy', 'solar:copy-bold-duotone', () => copySmart(getMarkdown(), showToast)],
 		[
 			'load-from-clipboard',
 			'paste',
