@@ -1,7 +1,7 @@
 :root {
 	/* core palette */
-	--bg-0: oklch(19% 0.06 300 / 1);
-	--bg-1: oklch(22% 0.04 310 / 1);
+	--bg-0: oklch(19% 0.06 310 / 1);
+	--bg-1: oklch(22% 0.04 300 / 1);
 	--bg-2: oklch(26% 0.12 290 / 1);
 	--fg: oklch(92% 0.03 310 / 1);
 	--brand: oklch(40% 0.2 300 / 1);
@@ -9,6 +9,10 @@
 	--accent: oklch(86% 0.13 230 / 1);
 	--overlay: oklch(27% 0.06 300 / 0.28);
 	--highlight: #ee0055;
+	--primary: var(--brand);
+	--secondary: oklch(60% 0.16 130 / 1);
+
+	--muted: var(--hint);
 
 	/* base16 for editor tokens */
 	--base00: var(--surface-0);
@@ -22,6 +26,7 @@
 	--base08: #ff5577; /* red/keyword */
 	--base09: #ffaa55; /* orange/number */
 	--base0A: #ffee77; /* yellow/attr */
+	/* --base0A: #bb5544;  */
 	--base0B: #55dd99; /* green/string */
 	--base0C: #33ccdd; /* aqua/type */
 	--base0D: #66aaff; /* blue/function */
@@ -37,9 +42,6 @@
 	--surface-1: color-mix(in oklab, var(--bg-1) 96%, transparent);
 	--surface-2: color-mix(in oklab, var(--bg-2) 94%, transparent);
 	--text: var(--fg);
-	--primary: var(--brand);
-	--secondary: color-mix(in oklab, var(--brand) 40%, var(--bg-2));
-	--muted: var(--hint);
 
 	--shadow-1: 0 0 20px currentColor;
 	--shadow-2: 0 0 24px color-mix(in oklab, currentColor 32%, transparent);
@@ -91,9 +93,40 @@ body {
 	padding: 0 var(--pad);
 	backdrop-filter: blur(10px) saturate(120%);
 	background: color-mix(in oklab, var(--surface-0) 8%, transparent);
-	box-shadow: 0 0 30px var(--surface-2);
+	box-shadow: 0 0 30px var(--primary);
 	z-index: 100;
+	transition: all 0.3s ease;
 }
+
+#bar-pull {
+  position: absolute;
+	transition: all 0.3s ease;
+  /* background: red; */
+  color: var(--secondary);
+  z-index: 10;
+  width: auto;
+  height: auto;
+  min-width: 48px;
+  min-height: 48px;
+  top: -30px;
+  right: 10px;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.4;
+    color: var(--primary);
+  }
+}
+
+/*
+ * #bar:hover { top: 0px !important; } */
 
 #brand {
 	font-weight: 700;
@@ -201,7 +234,7 @@ button#github {
 
 #wrap {
 	position: fixed;
-	top: var(--bar-h);
+	top: 0;
 	left: 0;
 	right: 0;
 	bottom: 0;
@@ -291,7 +324,7 @@ button#github {
 	content: "";
 	position: absolute;
 	inset: 0;
-	background: var(--secondary);
+	background: var(--surface-1);
 	transition: background 0.15s ease;
 }
 
@@ -337,17 +370,21 @@ button#github {
 	bottom: 10px;
 	right: 12px;
 	font-size: 12px;
-	opacity: 0.75;
+	opacity: 0.4;
 	color: var(--muted);
 	background: color-mix(in oklab, var(--surface-2) 70%, transparent);
 	border-radius: 999px;
 	padding: 4px 8px;
-	backdrop-filter: blur(6px);
+	backdrop-filter: blur(20px);
 	user-select: none;
 	z-index: 1100;
+	transition: all 0.3s ease;
 }
-
-/* removed old milkdown theme variables (unused) */
+#ver:hover {
+	transform: scale(1.4);
+	color: var(--accent);
+	opacity: 1;
+}
 
 /* preview typography */
 #previewhtml h1,
@@ -421,7 +458,15 @@ button#github {
 #previewhtml kbd {
 	display: inline-block;
 	padding: 2px 6px;
-	font: 600 0.86em/1.2 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+	font:
+		600 0.86em / 1.2 ui-monospace,
+		SFMono-Regular,
+		Menlo,
+		Monaco,
+		Consolas,
+		"Liberation Mono",
+		"Courier New",
+		monospace;
 	color: var(--text);
 	background: color-mix(in oklab, var(--text) 8%, transparent);
 	border: 1px solid color-mix(in oklab, var(--text) 25%, transparent);
@@ -459,45 +504,34 @@ button#github {
 
 /* callouts (GitHub-style) */
 #previewhtml .callout {
-    border-left: 5px solid var(--brand);
-    background: color-mix(in oklab, var(--text) 8%, transparent);
-    padding: 10px 12px;
-    border-radius: var(--radius);
-    margin: 0.8em 0;
+	border-left: 5px solid var(--brand);
+	background: color-mix(in oklab, var(--text) 8%, transparent);
+	padding: 10px 12px;
+	border-radius: 0 10px 10px 0px;
+	margin: 0.8em 0;
 }
 #previewhtml .callout::before {
-    content: attr(data-title);
-    display: block;
-    font-weight: 700;
-    margin-bottom: 4px;
-    color: var(--accent);
-    letter-spacing: 0.5px;
-}
-#previewhtml .callout[data-kind="note"] { border-color: var(--accent); }
-#previewhtml .callout[data-kind="tip"] { border-color: #00aa88; }
-#previewhtml .callout[data-kind="important"] { border-color: #ff4488; }
-#previewhtml .callout[data-kind="warning"] { border-color: #ffaa00; }
-#previewhtml .callout[data-kind="caution"] { border-color: #ff5555; }
-
-#splash {
-	position: fixed;
-	inset: 0;
-	display: grid;
-	place-items: center;
-	background: var(--surface-0);
-	color: var(--text);
-	z-index: 1000;
-	gap: 16px;
-}
-#splash-brand {
-	font-weight: 800;
+	content: attr(data-title);
+	display: block;
+	font-weight: 700;
+	margin-bottom: 4px;
+	color: var(--accent);
 	letter-spacing: 0.5px;
-	font-size: clamp(28px, 5vw, 42px);
-	opacity: 0.9;
 }
-
-html.ready #splash {
-	display: none;
+#previewhtml .callout[data-kind="note"] {
+	border-color: var(--accent);
+}
+#previewhtml .callout[data-kind="tip"] {
+	border-color: #00aa88;
+}
+#previewhtml .callout[data-kind="important"] {
+	border-color: #ff4488;
+}
+#previewhtml .callout[data-kind="warning"] {
+	border-color: #ffaa00;
+}
+#previewhtml .callout[data-kind="caution"] {
+	border-color: #ff5555;
 }
 
 .cm-cursor {

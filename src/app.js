@@ -7,4 +7,3 @@ export const boot = async () => {
 	const { previewHtml } = initUI({ getMarkdown, setMarkdown })
 	setupPreview({ getMarkdown, onMarkdownUpdated, previewHtml })
 }
-

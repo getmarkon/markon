@@ -7,10 +7,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>markon</title>
   <style>
-    /* minimal splash styles so it looks right before JS/CSS load */
-    #splash { position: fixed; inset: 0; display: grid; place-items: center; grid-auto-flow: row; gap: 16px; background: #111; color: #f4f4f4; z-index: 1000; }
-    #splash-brand { font-weight: 800; letter-spacing: 0.5px; font-size: clamp(28px, 5vw, 42px); opacity: 0.9; }
-    html.ready #splash { display: none; }
+    #splash {
+      position: fixed;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      background: #110022;
+      z-index: 1000;
+      img {
+        max-width: 80vw;
+      }
+    }
+
+    #splash::before {
+      content: "";
+      position: absolute;
+      width: 400px;
+      height: 100px;
+      background: #ff110088;
+      border-radius: 50%;
+      filter: blur(150px);
+      transform: translate(-40%, -50%);
+      top: 50%;
+      left: 50%;
+      z-index: -1;
+    }
+
+    html.ready #splash {
+      display: none;
+    }
   </style>
   <meta name="description" content="Minimal Distraction‑free Markdown editor" />
   <meta name="author" content="metaory">
@@ -18,32 +43,38 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content="markon" />
   <meta property="og:description" content="Minimal Distraction‑free Markdown editor" />
-  <meta property="og:image" content="/screenshot.png" />
-  <meta property="og:image" content="https://metaory.github.io/markon/screenshot.png">
+  <meta property="og:image" content="https://metaory.github.io/markon/screenshots.png">
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="markon" />
   <meta name="twitter:description" content="Minimal Distraction‑free Markdown editor" />
-  <meta name="twitter:image" content="https://metaory.github.io/markon/screenshot.png" />
+  <meta name="twitter:image" content="https://metaory.github.io/markon/screenshots.png" />
   <meta name="color-scheme" content="dark">
-  <meta name="theme-color" content="#331155" media="(prefers-color-scheme: dark)">
-  <meta name="theme-color" content="#331155" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#331155">
+  <meta name="theme-color" content="#443388" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#443388" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#443388">
 </head>
 
 <body>
-  <div id="splash"><img src="/logo.png" width="160" alt=""/><div id="splash-brand">markon</div></div>
+  <div id="splash"><img src="/wordmark.png" width="auto" alt="" /></div>
   <div id="bar" hidden>
     <div id="brand">
-      <img src="/logo.png" height="30" alt=""/>
-      markon
+      <img src="/wordmark.png" height="30" alt="" />
     </div>
-    <div id="actions"></div>
+    <div id="actions"> </div>
   </div>
-    <div id="wrap" hidden>
-      <div id="editor"></div>
-      <div id="split" hidden aria-label="Resize"></div>
-      <aside id="preview" hidden><div id="previewhtml"></div></aside>
-    </div>
+  <!--
+  <button id="bar-pull">
+    <iconify-icon icon="solar:double-alt-arrow-down-bold-duotone" width="48"> </iconify-icon>
+  </button>
+  -->
+  <iconify-icon id="bar-pull" icon="solar:double-alt-arrow-down-bold-duotone" width="48"> </iconify-icon>
+  <div id="wrap" hidden>
+    <div id="editor"></div>
+    <div id="split" hidden aria-label="Resize"></div>
+    <aside id="preview" hidden>
+      <div id="previewhtml"></div>
+    </aside>
+  </div>
   <div id="toast" hidden></div>
   <script type="module" src="/src/main.js"></script>
 </body>

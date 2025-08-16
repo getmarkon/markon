@@ -8,8 +8,8 @@ import '@fontsource/monaspace-krypton/700.css'
 import 'iconify-icon'
 import './style.css'
 import { boot } from './app.js'
+import setupToolbar from './toolbar.js'
 
-// show app version (from Vite define) in bottom-right
 const showVersion = () => {
 	const v = import.meta.env?.VERSION
 	if (!v) return
@@ -21,6 +21,5 @@ const showVersion = () => {
 	}
 	el.textContent = `v${v}`
 }
-showVersion()
 
-await boot()
+boot().then(showVersion).then(setupToolbar)

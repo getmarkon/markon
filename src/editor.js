@@ -3,10 +3,10 @@ import { markdown, markdownLanguage } from '@codemirror/lang-markdown'
 import { languages } from '@codemirror/language-data'
 import { EditorState } from '@codemirror/state'
 import { EditorView, keymap } from '@codemirror/view'
-import { editorThemeExtensions } from './theme.js'
 import sampleMd from './sample.md?raw'
-const readDefaultMarkdown = async () => sampleMd || '# markon\n\nStart typing...'
+import { editorThemeExtensions } from './theme.js'
 
+const readDefaultMarkdown = async () => sampleMd || '# markon\n\nStart typing...'
 
 export const createEditor = async () => {
 	let view = null
@@ -32,7 +32,7 @@ export const createEditor = async () => {
 		view?.destroy?.()
 		const state = EditorState.create({
 			doc: defaultValue,
-				extensions: [
+			extensions: [
 				markdown({ base: markdownLanguage, codeLanguages: languages }),
 				keymap.of([indentWithTab, ...defaultKeymap]),
 				EditorView.lineWrapping,
@@ -56,7 +56,6 @@ export const createEditor = async () => {
 			baseline = next
 		})
 	}
-
 
 	const getMarkdown = () => view.state.doc.toString()
 	const setMarkdown = markdown => {

@@ -57,7 +57,8 @@ const fetchText = async (url, timeoutMs = 8000) => {
 		.finally(() => clearTimeout(id))
 }
 
-const readSupportedLanguages = async () => fetchText(REMOTE, 8000).then(text => text || (existsSync(SRC) ? readFileSync(SRC, 'utf8') : ''))
+const readSupportedLanguages = async () =>
+	fetchText(REMOTE, 8000).then(text => text || (existsSync(SRC) ? readFileSync(SRC, 'utf8') : ''))
 
 const run = async () => {
 	const text = await readSupportedLanguages()
@@ -79,7 +80,7 @@ const run = async () => {
 			if (!mod && pkgName) mod = normalizeCandidate(aliases[0] || languageCell)
 			if (!mod) continue
 			for (const a of aliases) aliasToModule[toKey(a)] = mod
-            for (const tok of languageCell.split(',').map(s => normalizeCandidate(s))) if (tok) aliasToModule[tok] = mod
+			for (const tok of languageCell.split(',').map(s => normalizeCandidate(s))) if (tok) aliasToModule[tok] = mod
 			if (pkgName) moduleToPackage[mod] = pkgName
 		}
 	}
@@ -92,7 +93,7 @@ const run = async () => {
 		`export const moduleToPackage = ${JSON.stringify(moduleToPackage, null, 1)}`,
 		'// Static importers for highlight.js core languages',
 		'export const coreImporters = {',
-        ...coreMods.map(m => ` ${JSON.stringify(m)}: () => import('highlight.js/lib/languages/${m}.js'),`),
+		...coreMods.map(m => ` ${JSON.stringify(m)}: () => import('highlight.js/lib/languages/${m}.js'),`),
 		'}',
 		'',
 	]

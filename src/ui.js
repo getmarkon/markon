@@ -107,7 +107,8 @@ export const initUI = ({ getMarkdown, setMarkdown }) => {
 	previewHtml.innerHTML = ''
 	const showToast = makeToast(toast)
 
-    const getPrefTheme = () => localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+	const getPrefTheme = () =>
+		localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
 	const applyTheme = theme => {
 		const isLight = theme === 'light'
 		document.documentElement.classList.toggle('light', isLight)
@@ -122,7 +123,7 @@ export const initUI = ({ getMarkdown, setMarkdown }) => {
 
 	const REPO = import.meta.env?.VITE_GITHUB || 'https://github.com/metaory/markon'
 
-    const applySpell = (on = document.getElementById('toggle-spell')?.getAttribute('aria-pressed') === 'true') => {
+	const applySpell = (on = document.getElementById('toggle-spell')?.getAttribute('aria-pressed') === 'true') => {
 		const root = document.querySelector('.cm-content')
 		if (!root) return
 		root.setAttribute('spellcheck', on ? 'true' : 'false')
@@ -136,8 +137,8 @@ export const initUI = ({ getMarkdown, setMarkdown }) => {
 		iconEl.setAttribute('icon', iconName)
 	}
 
-    const buttons = [
-        ['copy-to-clipboard', 'copy', 'solar:copy-bold-duotone', () => copySmart(getMarkdown(), showToast)],
+	const buttons = [
+		['copy-to-clipboard', 'copy', 'solar:copy-bold-duotone', () => copySmart(getMarkdown(), showToast)],
 		[
 			'load-from-clipboard',
 			'paste',
@@ -172,6 +173,8 @@ export const initUI = ({ getMarkdown, setMarkdown }) => {
 		[
 			'toggle-spell',
 			'spell',
+			/*
+			 */
 			'tabler:text-spellcheck',
 			pressed => {
 				applySpell(pressed)
@@ -205,7 +208,10 @@ export const initUI = ({ getMarkdown, setMarkdown }) => {
 		[
 			'toggle-raw',
 			'',
-			['mynaui:panel-right-close-solid', 'mynaui:panel-right-open-solid'],
+			[
+			  'mynaui:panel-right-open-solid',
+			  'mynaui:panel-right-close-solid',
+			],
 			pressed => {
 				setRawOpen(pressed)
 			},
@@ -214,16 +220,14 @@ export const initUI = ({ getMarkdown, setMarkdown }) => {
 		],
 	]
 
-	actions.innerHTML = ''
+	// actions.innerHTML = ''
 	for (const [id, label, icon, handler, isToggle, pressedDefault] of buttons) {
 		const btn = el('button', { id, title: label })
 		if (isToggle) {
 			btn.classList.add('toggle')
 			btn.setAttribute('aria-pressed', String(pressedDefault))
 		}
-		const iconName = Array.isArray(icon)
-			? (pressedDefault ? icon[1] : icon[0])
-			: icon
+		const iconName = Array.isArray(icon) ? (pressedDefault ? icon[1] : icon[0]) : icon
 		btn.appendChild(el('iconify-icon', { icon: iconName, width: '24' }))
 		btn.appendChild(el('span', { textContent: label }))
 		btn.addEventListener('click', e => {
