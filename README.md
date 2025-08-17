@@ -29,11 +29,10 @@
 
 ## TODO
 
-- add mobile support notice dialog
-- fix keybinds
-- fix scroll
-- fix syntax highlighting for themes
-- improve spec coverage
+- mobile support notice dialog
+- scroll sync
+- syntax highlighting themes
+- spec coverage
 
 ## Roadmap
 
@@ -41,9 +40,9 @@
 - **Export**: PDF/HTML
 - **Mobile**: touch gestures
 - **PWA**: installable, offline cache
-- **Scroll**: toggle able scroll follow
-- **Share**: url embedded hash content
-- **Shortcuts**: command palette, keybinds
+- **Scroll**: toggle scroll follow
+- **Share**: url hash content
+- **Shortcuts**: command palette
 - **Theming**: custom CSS hook
 
 > [!NOTE]

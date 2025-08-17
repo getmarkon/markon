@@ -6,4 +6,9 @@ export default defineConfig({
 	define: {
 		'import.meta.env.VERSION': JSON.stringify(pkg.version),
 	},
+	server: {
+		watch: {
+			ignored: ['**/*.tmp', '**/.dev/**', '**/.git/**', '**/.github/**', '**/node_modules/**', '**/dist/**'],
+		},
+	},
 })

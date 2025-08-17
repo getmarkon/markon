@@ -1,5 +1,9 @@
 class Toolbar {
-	#delay = 3_000
+	#delay = 91_000
+	#toolShowTop = '0px'
+	#pullShowTop = '0px'
+	#toolHideTop = '-42px'
+	#pullHideTop = '-40px'
 	#hideTimer
 
 	constructor() {
@@ -17,15 +21,15 @@ class Toolbar {
 	#hide() {
 		clearTimeout(this.#hideTimer)
 		this.#hideTimer = setTimeout(() => {
-			this.tool.style.top = '-42px'
-			this.pull.style.top = '4px'
+			this.tool.style.top = this.#toolHideTop
+			this.pull.style.top = this.#pullShowTop
 		}, this.#delay)
 	}
 
 	#show() {
 		clearTimeout(this.#hideTimer)
-		this.tool.style.top = '0'
-		this.pull.style.top = '-30px'
+		this.tool.style.top = this.#toolShowTop
+		this.pull.style.top = this.#pullHideTop
 	}
 }
 

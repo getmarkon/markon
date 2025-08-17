@@ -7,19 +7,14 @@ import '@fontsource/monaspace-krypton/400-italic.css'
 import '@fontsource/monaspace-krypton/700.css'
 import 'iconify-icon'
 import './style.css'
-import { boot } from './app.js'
-import setupToolbar from './toolbar.js'
+import { createEditor } from './core.js'
+import { setupPreview } from './preview.js'
+import { initUI } from './ui.js'
 
-const showVersion = () => {
-	const v = import.meta.env?.VERSION
-	if (!v) return
-	let el = document.getElementById('ver')
-	if (!el) {
-		el = document.createElement('div')
-		el.id = 'ver'
-		document.body.appendChild(el)
-	}
-	el.textContent = `v${v}`
+const boot = async () => {
+	const { getMarkdown, setMarkdown, onMarkdownUpdated } = await createEditor()
+	const { previewHtml } = initUI({ getMarkdown, setMarkdown })
+	setupPreview({ getMarkdown, onMarkdownUpdated, previewHtml })
 }
 
-boot().then(showVersion).then(setupToolbar)
+boot()

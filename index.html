@@ -14,6 +14,7 @@
       place-items: center;
       background: #110022;
       z-index: 1000;
+
       img {
         max-width: 80vw;
       }
@@ -56,22 +57,29 @@
 
 <body>
   <div id="splash"><img src="/wordmark.png" width="auto" alt="" /></div>
-  <div id="bar" hidden>
+  <div id="bar">
     <div id="brand">
       <img src="/wordmark.png" height="30" alt="" />
     </div>
     <div id="actions"> </div>
   </div>
-  <!--
-  <button id="bar-pull">
-    <iconify-icon icon="solar:double-alt-arrow-down-bold-duotone" width="48"> </iconify-icon>
-  </button>
-  -->
   <iconify-icon id="bar-pull" icon="solar:double-alt-arrow-down-bold-duotone" width="48"> </iconify-icon>
-  <div id="wrap" hidden>
+  <div id="wrap">
     <div id="editor"></div>
-    <div id="split" hidden aria-label="Resize"></div>
-    <aside id="preview" hidden>
+    <div id="split" aria-label="Resize">
+      <iconify-icon 
+        id="preview-toggle" 
+        icon="solar:transfer-horizontal-bold-duotone" 
+        width="40" 
+        class="preview-toggle"
+        aria-pressed="true"></iconify-icon>
+      <iconify-icon 
+        id="resize-handle" 
+        icon="material-symbols:drag-indicator" 
+        width="40" 
+        class="preview-toggle"></iconify-icon>
+    </div>
+    <aside id="preview">
       <div id="previewhtml"></div>
     </aside>
   </div>
