@@ -10,12 +10,21 @@ const styles = `
 	left: 50%;
 	color: var(--accent);
 	transform: translateX(-50%);
-	background: var(--surface-2);
-	padding: 8px 12px;
+	background: var(--bg-light);
+	border: 1px solid var(--accent-alpha);
+	padding: 12px 20px;
 	border-radius: 14px;
-	box-shadow: inset 0 0 8px currentColor, 0 0 30px currentColor;
-	backdrop-filter: blur(6px);
+	box-shadow: 0 4px 20px var(--accent-alpha);
+	backdrop-filter: blur(10px);
 	z-index: 1100;
+	max-width: 90vw;
+	white-space: nowrap;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+}
+
+#toast:not([hidden]) {
+	opacity: 1;
 }
 
 .paste-overlay {
@@ -61,18 +70,22 @@ export const createToast =
 	toast =>
 	(msg, ms = 1_200) => {
 		toast.textContent = msg
-		toast.hidden = false
+		toast.removeAttribute('hidden')
 		clearTimeout(window.__toastTimer)
 		window.__toastTimer = setTimeout(() => {
-			toast.hidden = true
+			toast.setAttribute('hidden', '')
 		}, ms)
 	}
 
 // Clipboard utilities
 export const copySmart = async (text, notify) => {
 	const fallback = () => {
-		const ta = el('textarea', { value: text, style: 'position:fixed;opacity:0' })
+		const ta = el('textarea', { 
+			value: text, 
+			style: 'position:fixed;top:-9999px;left:-9999px;opacity:0;width:1px;height:1px;border:none;outline:none;resize:none;overflow:hidden;'
+		})
 		document.body.appendChild(ta)
+		ta.focus()
 		ta.select()
 		const ok = document.execCommand('copy')
 		notify(ok ? 'copied to clipboard' : 'copy failed')

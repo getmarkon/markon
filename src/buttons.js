@@ -136,7 +136,13 @@ const BUTTON_CONFIGS = [
 		async (_btn, showToast) => {
 			const text = await window.readClipboardSmart?.()
 			if (text) {
-				window.setMarkdown?.(text)
+				const lines = text.split('\n')
+				const minLines = 5
+				const paddingLines = lines.length < minLines ? 3 : 0
+				const paddedText = paddingLines > 0 
+					? '\n'.repeat(paddingLines) + text
+					: text
+				window.setMarkdown?.(paddedText)
 				showToast('loaded from clipboard')
 			} else showToast('clipboard empty')
 		},
