@@ -7,13 +7,13 @@ const cmTheme = EditorView.theme({
 	'&': { height: '100%' },
 	'.cm-scroller': {
 		fontFamily: 'Monaspace Argon, ui-monospace, monospace',
-		background: 'var(--surface-0)',
+		background: 'var(--bg)',
 	},
 	'.cm-content': { caretColor: 'var(--accent)' },
 	'.cm-gutters': { background: 'transparent', border: 'none' },
 	'.cm-line': { color: 'var(--text)' },
 	'.cm-selectionBackground': {
-		background: 'var(--accent-overlay)',
+		background: 'var(--accent-alpha)',
 	},
 })
 

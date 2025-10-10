@@ -1,7 +1,7 @@
 import { createClickHandler, createElement, injectStyles } from './utils.js'
 
 // Help component styles
-const styles = `
+const styles = /* css */`
 .help-overlay {
 	position: fixed;
 	inset: 0;
@@ -107,6 +107,7 @@ const styles = `
 }
 
 .help-icon {
+  opacity: .2;
 	position: fixed;
 	bottom: 20px;
 	right: 20px;
@@ -118,9 +119,7 @@ const styles = `
 	font-size: 24px;
 	color: var(--secondary);
 	font-weight: bold;
-	transition:
-		transform 0.2s ease,
-		box-shadow 0.2s ease;
+	transition: all 0.2s ease-in-out;
 }
 
 .help-icon::before {
@@ -137,6 +136,7 @@ const styles = `
 }
 
 .help-icon:hover {
+  opacity: .8;
 	transform: scale(1.1);
 	box-shadow: 0 0 24px rgba(0, 0, 0, 0.32);
 }
