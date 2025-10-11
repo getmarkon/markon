@@ -1,4 +1,4 @@
-import { createEventHandler, createElement, createClickHandler, injectStyles } from './utils.js'
+import { createEventHandler, createElement, createClickHandler } from './utils.js'
 
 // Layout utilities
 const setPreviewWidth = (width, wrap) => {
@@ -6,93 +6,6 @@ const setPreviewWidth = (width, wrap) => {
 	const finalWidth = Math.max(width, 0)
 	wrap.style.gridTemplateColumns = `1fr 10px ${finalWidth}px`
 }
-
-// Resize component styles
-const styles = /* css */`
-#preview {
-	display: grid;
-	grid-template-columns: 1fr;
-	overflow: hidden;
-	overflow-x: auto;
-	overflow-y: auto;
-	position: relative;
-	box-sizing: border-box;
-	min-width: 0;
-	width: 100%;
-	max-width: none;
-}
-
-.preview-toggle {
-	color: var(--comment);
-	position: fixed;
-	margin-left: -15px;
-	transition: all 0.3s ease;
-	pointer-events: auto;
-	top: 100px;
-	z-index: 10;
-	cursor: pointer;
-	opacity: 0;
-
-	iconify-icon {
-		width: 20px;
-		height: 20px;
-	}
-
-	&:hover {
-		color: var(--primary);
-		opacity: 1;
-		transform: translateX(0);
-	}
-}
-
-#resize-handle {
-	position: fixed;
-	margin-left: -12px;
-	pointer-events: none;
-	user-select: none;
-	top: 200px;
-	z-index: 5;
-	opacity: 1;
-	transform: translateX(10px);
-}
-
-#split {
-	width: 10px;
-	cursor: col-resize;
-	background: var(--bg-light);
-	position: relative;
-	user-select: none;
-	-webkit-user-select: none;
-	touch-action: none;
-
-	&::before {
-		content: "";
-		position: absolute;
-		inset: 0;
-		background: var(--text-alpha);
-		transition: background 0.15s ease;
-	}
-
-	&:hover {
-		&::before {
-			background: var(--bg-alpha);
-		}
-
-		.preview-toggle {
-			transform: scale(1.1);
-			opacity: 1;
-			color: var(--operator);
-		}
-	}
-
-	&.active::before {
-		background: var(--accent);
-	}
-}
-`
-
-// Inject styles
-injectStyles(styles)
 
 // Preview manager
 export const createPreviewManager = (wrap) => {

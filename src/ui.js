@@ -1,6 +1,6 @@
-import { createButtons } from './buttons.js'
+import { createButtons } from './actions.js'
 import { createHelpDialog, createHelpIcon } from './help.js'
-import { observeTheme } from './highlight.js'
+import { observeTheme } from './syntax.js'
 import { setupHotkeys } from './hotkeys.js'
 import { createPreviewManager, createResizeHandler } from './resize.js'
 import createToolbar from './toolbar.js'

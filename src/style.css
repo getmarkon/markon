@@ -37,6 +37,7 @@
 	--shadow: 0 0 20px currentColor;
 	--shadow-strong: 0 0 24px color-mix(in srgb, black 32%, transparent);
 }
+
 /* light theme override */
 html.light {
 	--bg: #eeeedd;
@@ -60,6 +61,8 @@ html.light {
 	--info: #1199cc;
 	--error: #cc6600;
 }
+
+/* Base styles */
 html {
 	font-family: "Monaspace Krypton", system-ui, Helvetica, Arial, sans-serif;
 	line-height: 1.5;
@@ -73,111 +76,32 @@ html {
 	min-height: 100%;
 	width: 100%;
 }
+
 body {
 	margin: 0;
 	min-height: 100vh;
 	background: var(--bg);
 	width: 100%;
 }
+
+/* Global scrollbars */
 * {
 	scrollbar-width: thin;
 	scrollbar-color: var(--bg) var(--bg-light);
-	/* scrollbar-color: var(--bg-light) transparent; */
 }
-#bar {
-	position: fixed;
-	inset-inline: 0;
-	top: 0;
-	height: var(--bar-h);
-	display: grid;
-	grid-template-columns: auto 1fr;
-	align-items: center;
-	gap: 12px;
-	padding: 0 var(--pad);
-	backdrop-filter: blur(10px) saturate(120%);
-	background: var(--text-alpha);
-	box-shadow: 0 0 30px var(--bg);
-	z-index: 100;
-	transition: top 0.3s ease;
-}
-#bar-pull {
-	position: fixed;
-	transition: top 0.3s ease;
-	color: var(--secondary);
-	z-index: 10;
-	width: auto;
-	height: auto;
-	min-width: 48px;
-	min-height: 48px;
-	right: 10px;
-	animation: pulse 10s ease-in-out infinite;
-}
-@keyframes pulse {
-	0%,
-	100% {
-		transform: scale(1) translateY(-26px);
-		opacity: .4;
-	}
-	50% {
-		transform: scale(1.2) translateY(-4px);
-		opacity: 0.1;
-		color: var(--primary);
-	}
-}
-#brand {
-	font-weight: 700;
-	font-family: Bungee, monospace;
-	font-size: 1.2rem;
-	letter-spacing: 0.5px;
-	display: grid;
-	grid-auto-flow: column;
-	place-items: center;
-	gap: 12px;
-	text-shadow: 0 0 14px var(--brand);
-	background: linear-gradient(45deg, var(--hint), var(--brand));
-	background-clip: text;
-	color: transparent;
-}
-#actions {
-	display: grid;
-	grid-auto-flow: column;
-	gap: 8px;
-	justify-content: end;
-	min-width: 0;
-}
-/* Layout */
-#wrap {
-	position: relative;
-	inset: 0;
-	display: grid;
-	grid-template-columns: 1fr 10px 400px;
-	background: var(--bg);
-	min-width: 0;
-	width: 100%;
-	max-width: none;
-	height: 100vh;
-	overflow: hidden;
-}
-#editor {
-	font-size: 16px;
-	position: relative;
-	min-width: 0;
-	overflow: auto;
-	background: var(--bg);
-	max-width: 100%;
-	container-type: inline-size;
-}
-/* Scrollbars */
+
 *::-webkit-scrollbar {
 	width: 10px;
 	height: 10px;
 }
+
 *::-webkit-scrollbar-thumb {
 	background: var(--comment);
 	border-radius: 8px;
 	border: 2px solid transparent;
 	background-clip: content-box;
 }
+
 *::-webkit-scrollbar-track {
 	background: transparent;
 }

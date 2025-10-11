@@ -1,36 +1,34 @@
-class Toolbar {
-	#delay = 1_000
-	#toolShowTop = '0px'
-	#pullShowTop = '0px'
-	#toolHideTop = '-42px'
-	#pullHideTop = '-40px'
-	#hideTimer
+const createToolbar = () => {
+	const delay = 1_000
+	const toolShowTop = '0px'
+	const pullShowTop = '0px'
+	const toolHideTop = '-42px'
+	const pullHideTop = '-40px'
+	let hideTimer
 
-	constructor() {
-		this.tool = document.getElementById('bar')
-		this.wrap = document.getElementById('wrap')
-		this.pull = document.getElementById('bar-pull')
+	const tool = document.getElementById('bar')
+	const wrap = document.getElementById('wrap')
+	const pull = document.getElementById('bar-pull')
 
-		this.tool.addEventListener('pointerenter', this.#show.bind(this))
-		this.wrap.addEventListener('pointerenter', this.#hide.bind(this))
-		this.pull.addEventListener('pointerenter', this.#show.bind(this))
-
-		this.#hide()
+	const hide = () => {
+		clearTimeout(hideTimer)
+		hideTimer = setTimeout(() => {
+			tool.style.top = toolHideTop
+			pull.style.top = pullShowTop
+		}, delay)
 	}
 
-	#hide() {
-		clearTimeout(this.#hideTimer)
-		this.#hideTimer = setTimeout(() => {
-			this.tool.style.top = this.#toolHideTop
-			this.pull.style.top = this.#pullShowTop
-		}, this.#delay)
+	const show = () => {
+		clearTimeout(hideTimer)
+		tool.style.top = toolShowTop
+		pull.style.top = pullHideTop
 	}
 
-	#show() {
-		clearTimeout(this.#hideTimer)
-		this.tool.style.top = this.#toolShowTop
-		this.pull.style.top = this.#pullHideTop
-	}
+	tool.addEventListener('pointerenter', show)
+	wrap.addEventListener('pointerenter', hide)
+	pull.addEventListener('pointerenter', show)
+
+	hide()
 }
 
-export default () => new Toolbar()
+export default createToolbar

@@ -27,27 +27,6 @@ const styles = `
 	opacity: 1;
 }
 
-.paste-overlay {
-	position: fixed;
-	inset: 0;
-	display: grid;
-	place-items: center;
-	background: rgba(42, 44, 45, 0.28);
-	z-index: 1200;
-}
-
-.paste-overlay textarea {
-	width: 80vw;
-	height: 40vh;
-	border-radius: 10px;
-	border: none;
-	background: var(--surface-1);
-	color: var(--fg);
-	padding: 10px;
-	outline: none;
-	box-shadow: 0 0 20px currentColor;
-	backdrop-filter: blur(6px);
-}
 `
 
 // Inject styles
@@ -55,15 +34,6 @@ const styleSheet = document.createElement('style')
 styleSheet.textContent = styles
 document.head.appendChild(styleSheet)
 
-// Functional utilities
-export const pipe =
-	(...fns) =>
-	x =>
-		fns.reduce((acc, fn) => fn(acc), x)
-export const tap = fn => x => {
-	fn(x)
-	return x
-}
 
 // Toast utility
 export const createToast =
@@ -123,37 +93,6 @@ export const openFileText = () =>
 		input.click()
 	})
 
-// Paste overlay utility
-export const pasteOverlay = () =>
-	new Promise(resolve => {
-		const overlay = el('div', { className: 'paste-overlay' })
-		const ta = el('textarea', { placeholder: 'Paste here (Cmd/Ctrl+V), Enter to apply' })
-
-		overlay.appendChild(ta)
-		document.body.appendChild(overlay)
-		ta.focus()
-
-		const cleanup = () => overlay.remove()
-		const commit = () => {
-			cleanup()
-			resolve(ta.value || '')
-		}
-
-		ta.addEventListener('paste', () => setTimeout(commit))
-		ta.addEventListener('keydown', e => {
-			if (e.key === 'Enter' && (e.metaKey || e.ctrlKey || !ta.value)) commit()
-			if (e.key === 'Escape') {
-				cleanup()
-				resolve('')
-			}
-		})
-		overlay.addEventListener('click', e => {
-			if (e.target === overlay) {
-				cleanup()
-				resolve('')
-			}
-		})
-	})
 
 // Theme utilities
 export const getPrefTheme = () =>
@@ -170,12 +109,6 @@ export const applySpell = (on = document.querySelector('#toggle-spell')?.getAttr
 	document.querySelector('.cm-content')?.setAttribute('spellcheck', String(on))
 }
 
-// Style injection utility
-export const injectStyles = styles => {
-	const styleSheet = document.createElement('style')
-	styleSheet.textContent = styles
-	document.head.appendChild(styleSheet)
-}
 
 // Enhanced element creation utility
 export const createElement = (tag, attributes = {}, children = []) => {
@@ -196,7 +129,3 @@ export const createClickHandler = (element, handler) => createEventHandler(eleme
 export const createPointerHandler = (element, handler) => createEventHandler(element, 'pointerdown', handler)
 export const createKeyHandler = (element, handler) => createEventHandler(element, 'keydown', handler)
 
-// Animation utilities
-export const animateElement = (element, keyframes, options = {}) => {
-	return element.animate(keyframes, { duration: 200, easing: 'ease', ...options })
-}

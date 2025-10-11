@@ -1,11 +1,11 @@
-// Generate src/hl.js (alias->module, module->package, and core importers)
+// Generate src/languages.js (alias->module, module->package, and core importers)
 // No deps, Node >=18
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 
 const SRC = resolve(process.cwd(), 'scripts', 'SUPPORTED_LANGUAGES.md')
 const REMOTE = 'https://raw.githubusercontent.com/highlightjs/highlight.js/refs/heads/main/SUPPORTED_LANGUAGES.md'
-const OUT = resolve(process.cwd(), 'src', 'hl.js')
+const OUT = resolve(process.cwd(), 'src', 'languages.js')
 const HL_DIR = resolve(process.cwd(), 'node_modules', 'highlight.js', 'lib', 'languages')
 
 const toKey = s => (s || '').toLowerCase().trim()

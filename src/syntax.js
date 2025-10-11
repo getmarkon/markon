@@ -1,7 +1,7 @@
 import hljs from 'highlight.js/lib/core'
 import darkHlCssUrl from 'highlight.js/styles/panda-syntax-dark.css?url'
 import lightHlCssUrl from 'highlight.js/styles/panda-syntax-light.css?url'
-import { aliasToModule, coreImporters, moduleToPackage } from './hl.js'
+import { aliasToModule, coreImporters, moduleToPackage } from './languages.js'
 
 const moduleToImporter = coreImporters
 
