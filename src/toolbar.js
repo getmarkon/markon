@@ -1,5 +1,5 @@
 class Toolbar {
-	#delay = 91_000
+	#delay = 1_000
 	#toolShowTop = '0px'
 	#pullShowTop = '0px'
 	#toolHideTop = '-42px'

@@ -12,7 +12,7 @@ const styles = `
 	border: 0;
 	outline: none;
 	padding: 16px;
-	background: var(--surface-2);
+	background: var(--bg-light);
 	color: var(--text);
 	font-family: system-ui, Helvetica, Arial, sans-serif;
 	font-size: 15px;
@@ -39,14 +39,14 @@ const styles = `
 #previewhtml blockquote {
 	margin: 0.8em 0;
 	padding-left: 1em;
-	border-left: 3px solid var(--text-overlay);
+	border-left: 3px solid var(--text-alpha);
 	opacity: 0.9;
 }
 
 #previewhtml hr {
 	border: none;
 	height: 1px;
-	background: var(--text-overlay);
+	background: var(--text-alpha);
 	margin: 0.8em 0;
 }
 
@@ -56,7 +56,7 @@ const styles = `
 }
 
 #previewhtml pre, #previewhtml code {
-	background: var(--text-overlay);
+	background: var(--text-alpha);
 	border-radius: 14px;
 	font-family: "Monaspace Krypton", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
@@ -76,11 +76,11 @@ const styles = `
 	padding: 2px 6px;
 	font: 600 0.86em / 1.2 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 	color: var(--text);
-	background: var(--text-overlay);
-	border: 1px solid rgba(230, 230, 230, 0.25);
-	border-bottom-color: rgba(230, 230, 230, 0.35);
+	background: var(--text-alpha);
+	border: 1px solid var(--text-alpha);
+	border-bottom-color: color-mix(in srgb, var(--text) 35%, transparent);
 	border-radius: 6px;
-	box-shadow: 0 1px 0 rgba(230, 230, 230, 0.3), inset 0 -1px 0 var(--text-overlay);
+	box-shadow: 0 1px 0 color-mix(in srgb, var(--text) 30%, transparent), inset 0 -1px 0 var(--text-alpha);
 	vertical-align: middle;
 	white-space: nowrap;
 }
@@ -97,22 +97,22 @@ const styles = `
 }
 
 #previewhtml th, #previewhtml td {
-	border: 1px solid rgba(230, 230, 230, 0.18);
+	border: 1px solid color-mix(in srgb, var(--text) 18%, transparent);
 	padding: 6px 8px;
 	text-align: left;
 }
 
 #previewhtml thead th {
-	background: var(--text-overlay);
+	background: var(--text-alpha);
 }
 
 #previewhtml tbody tr:nth-child(even) {
-	background: rgba(230, 230, 230, 0.06);
+	background: color-mix(in srgb, var(--text) 6%, transparent);
 }
 
 #previewhtml .callout {
 	border-left: 5px solid var(--brand);
-	background: var(--text-overlay);
+	background: var(--text-alpha);
 	padding: 10px 12px;
 	border-radius: 0 10px 10px 0px;
 	margin: 0.8em 0;
@@ -128,10 +128,10 @@ const styles = `
 }
 
 #previewhtml .callout[data-kind="note"] { border-color: var(--accent); }
-#previewhtml .callout[data-kind="tip"] { border-color: #00aa88; }
-#previewhtml .callout[data-kind="important"] { border-color: #ff4488; }
-#previewhtml .callout[data-kind="warning"] { border-color: #ffaa00; }
-#previewhtml .callout[data-kind="caution"] { border-color: #ff5555; }
+#previewhtml .callout[data-kind="tip"] { border-color: var(--string); }
+#previewhtml .callout[data-kind="important"] { border-color: var(--brand); }
+#previewhtml .callout[data-kind="warning"] { border-color: var(--warning); }
+#previewhtml .callout[data-kind="caution"] { border-color: var(--error); }
 `
 
 // Inject styles

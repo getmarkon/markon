@@ -12,76 +12,92 @@ const styles = /* css */`
 #preview {
 	display: grid;
 	grid-template-columns: 1fr;
-	box-shadow: -1px 0 0 var(--text-overlay);
 	overflow: hidden;
 	overflow-x: auto;
+	overflow-y: auto;
 	position: relative;
 	box-sizing: border-box;
 	min-width: 0;
 	width: 100%;
 	max-width: none;
-	overflow-y: auto;
+}
+
+.preview-toggle,
+#resize-handle {
+	color: var(--comment);
+	position: fixed;
+	margin-left: -15px;
+	opacity: 0;
+	transition: all 0.3s ease;
+	transform: translateX(-5px);
+	pointer-events: auto;
 }
 
 .preview-toggle {
-  color: var(--hint);
-	position: fixed;
 	top: 100px;
-	margin-left: -15px;
 	z-index: 10;
-	opacity: 0.8;
-	transition: opacity 0.2s ease;
 	cursor: pointer;
-	pointer-events: auto;
-  &:hover {
-    opacity: 1;
-  }
+
+	iconify-icon {
+		width: 20px;
+		height: 20px;
+	}
+
+	&:hover {
+		color: var(--primary);
+		opacity: 1;
+		transform: translateX(0);
+	}
 }
 
 #resize-handle {
-	position: fixed;
 	top: 200px;
-	margin-left: -15px;
-	z-index: 10;
-	opacity: 0.8;
-	transition: opacity 0.2s ease;
 	z-index: 5;
-  &:hover {
-    opacity: 1;
-    background: var(--surface-1);
-  }
-}
 
-
-.preview-toggle iconify-icon {
-	width: 20px;
-	height: 20px;
+	&:hover {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }
 
 #split {
 	width: 10px;
 	cursor: col-resize;
-	background: transparent;
+	background: var(--bg-light);
 	position: relative;
 	user-select: none;
 	-webkit-user-select: none;
 	touch-action: none;
-}
 
-#split::before {
-	content: "";
-	position: absolute;
-	inset: 0;
-	background: var(--surface-1);
-	transition: background 0.15s ease;
-}
+	&::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background: var(--text-alpha);
+		transition: background 0.15s ease;
+	}
 
-#split:hover::before {
-	background: var(--brand);
-}
+	&:hover {
+		&::before {
+			background: var(--bg-alpha);
+		}
 
-#split.active::before {
-	background: var(--highlight);
+		.preview-toggle {
+			transform: translateX(-24px);
+			opacity: 1;
+			color: var(--operator);
+		}
+
+		#resize-handle {
+			transform: translateX(10px);
+			opacity: 1;
+			color: var(--operator);
+		}
+	}
+
+	&.active::before {
+		background: var(--accent);
+	}
 }
 `
 
