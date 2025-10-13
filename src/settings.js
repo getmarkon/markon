@@ -21,7 +21,8 @@ export const createSettingsDialog = () => {
 
 	const header = createElement('div', { className: 'settings-header' })
 	const title = createElement('h2', { className: 'settings-title', textContent: 'Settings' })
-	const closeBtn = createElement('button', { className: 'settings-close', textContent: '×' })
+	const closeBtn = createElement('button', { className: 'settings-close' })
+	closeBtn.innerHTML = '<iconify-icon width="38" height="38" icon="solar:close-circle-bold"></iconify-icon>'
 	header.append(title, closeBtn)
 
 	const content = createElement('div', { className: 'settings-content' })
@@ -66,7 +67,7 @@ export const createSettingsDialog = () => {
 		href: 'https://github.com/metaory/markon/issues/new/choose',
 		target: '_blank',
 		textContent: 'Submit issues or feature requests',
-		style: 'display: inline-flex; align-items: center; margin-top: 8px;'
+		style: 'display: inline-flex; align-items: center; margin-top: 8px; color: var(--accent);'
 	})
 	issuesLink.prepend(issuesIcon)
 

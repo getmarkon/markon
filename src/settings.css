@@ -39,13 +39,13 @@
 .settings-close {
   background: var(--text-alpha);
   border: none;
-  color: var(--comment);
+  color: var(--secondary);
   cursor: pointer;
-  padding: 8px;
+  padding: 6px;
   border-radius: 50%;
   font-size: 20px;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   display: grid;
   place-items: center;
   transition: all 0.2s ease;
