@@ -38,7 +38,7 @@
 | `Ctrl/Cmd + S` | Save to file |
 | `Ctrl/Cmd + O` | Open file |
 | `Ctrl/Cmd + P` | Toggle preview |
-| `Ctrl/Cmd + T` | Toggle theme |
+| `Ctrl/Cmd + M` | Toggle theme |
 | `Ctrl/Cmd + K` | Toggle spellcheck |
 | `Ctrl/Cmd + Shift + C` | Copy to clipboard |
 | `Ctrl/Cmd + Shift + V` | Load from clipboard |

@@ -4,7 +4,7 @@ import './settings.css'
 
 const HOTKEYS = [
 	['ctrl+/', 'Open settings', 'settings'],
-	['ctrl+t', 'Toggle theme', 'toggle-theme'],
+	['ctrl+m', 'Toggle theme', 'toggle-theme'],
 	['ctrl+k', 'Toggle spell check', 'toggle-spell'],
 	['ctrl+p', 'Toggle preview', 'preview-toggle'],
 	['ctrl+shift+c', 'Copy to clipboard', 'copy-to-clipboard'],
