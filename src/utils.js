@@ -206,6 +206,12 @@ export const getPrefTheme = () => {
 	return { theme, mode }
 }
 
+const updateThemeColor = () => {
+	const brandColor = getComputedStyle(document.documentElement).getPropertyValue('--brand').trim()
+	const meta = document.querySelector('meta[name="theme-color"]')
+	if (meta && brandColor) meta.setAttribute('content', brandColor)
+}
+
 export const applyTheme = async (themeName, mode) => {
 	const validTheme = themeName && themeName !== 'undefined' ? themeName : 'panda'
 	const validMode = mode && mode !== 'undefined' ? mode : 'dark'
@@ -219,6 +225,8 @@ export const applyTheme = async (themeName, mode) => {
 
 	const { setHlTheme } = await import('./syntax.js')
 	setHlTheme(validMode)
+
+	updateThemeColor()
 }
 
 export const applySpell = (on = document.querySelector('#toggle-spell')?.getAttribute('aria-pressed') === 'true') => {
