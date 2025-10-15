@@ -93,7 +93,7 @@ const run = async () => {
 		`export const moduleToPackage = ${JSON.stringify(moduleToPackage, null, 1)}`,
 		'// Static importers for highlight.js core languages',
 		'export const coreImporters = {',
-		...coreMods.map(m => ` ${JSON.stringify(m)}: () => import('highlight.js/lib/languages/${m}.js'),`),
+		...coreMods.map(m => ` ${JSON.stringify(m)}: () => import('highlight.js/lib/languages/${m}'),`),
 		'}',
 		'',
 	]
