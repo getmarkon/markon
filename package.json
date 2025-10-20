@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.1.4",
-    "vite": "^7.1.5"
+    "vite": "^7.1.11"
   },
   "dependencies": {
     "@codemirror/commands": "^6.6.2",
