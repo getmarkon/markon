@@ -12,11 +12,8 @@ export const createSettingsDialog = (showToast) => {
 		closedby: 'any' // Allow dismissal by backdrop click, ESC key, or close button
 	})
 
-	const header = createElement('div', { className: 'settings-header' })
-	const title = createElement('h2', { className: 'settings-title', textContent: 'Settings' })
 	const closeBtn = createElement('button', { className: 'settings-close' })
-	closeBtn.innerHTML = '<iconify-icon width="38" height="38" icon="tabler:circle-x-filled"></iconify-icon>'
-	header.append(title, closeBtn)
+	closeBtn.innerHTML = '<iconify-icon width="32" height="32" icon="tabler:circle-x-filled"></iconify-icon>'
 
 	const content = createElement('div', { className: 'settings-content' })
 
@@ -65,7 +62,7 @@ export const createSettingsDialog = (showToast) => {
 
 	footer.append(text1, heart, text2, githubProfileLink, text3, githubRepoLink, text4, version, br, issuesLink)
 
-	dialog.append(header, content, footer)
+	dialog.append(closeBtn, content, footer)
 
 	const show = () => {
 		// Only append if not already in DOM
@@ -102,26 +99,25 @@ const createActionsSection = (showToast) => {
 	const section = createElement('div', { className: 'settings-section' })
 
 	const actionsGrid = createElement('div', {
-		className: 'settings-shortcuts',
-		style: 'grid-template-columns: repeat(2, 1fr);'
+		className: 'settings-shortcuts'
 	})
 
 	SETTINGS_ACTIONS
-		.filter(action => action.id !== 'install-pwa')
+		.filter(action => action.id !== 'install-pwa' && action.id !== 'github')
 		.forEach(({ id, label, icon, hotkey, gradient, handler }) => {
 		const item = createElement('div', { className: 'settings-item' })
 
 		// Label
 		const labelSpan = createElement('span', {
 			textContent: label,
-			style: 'font-weight: 500; flex: 1; min-width: 0;'
+			style: 'font-weight: 500;'
 		})
 
 		// Button
 		const btn = createElement('button', {
 			className: 'settings-theme-control-btn',
 			id,
-			style: `background: ${gradient}; border: none; flex-shrink: 0; min-width: 80px;${id === 'install-pwa' ? ' display: none;' : ''}`
+			style: `background: ${gradient}; border: none; min-width: 80px;${id === 'install-pwa' ? ' display: none;' : ''}`
 		})
 		const btnIcon = createElement('iconify-icon', { icon, width: '32', height: '32' })
 		const btnText = createElement('span', {
@@ -138,8 +134,7 @@ const createActionsSection = (showToast) => {
 		if (hotkey) {
 			const hotkeyKbd = createElement('kbd', {
 				className: 'settings-key',
-				textContent: hotkey,
-				style: 'flex-shrink: 0;'
+				textContent: hotkey
 			})
 			item.append(labelSpan, btn, hotkeyKbd)
 		} else {
@@ -157,7 +152,6 @@ const createActionsSection = (showToast) => {
 // Create themes section
 const createThemesSection = () => {
 	const section = createElement('div', { className: 'settings-section' })
-	const sectionTitle = createElement('h3', { className: 'settings-section-title', textContent: 'Themes' })
 
 	// Theme grid
 	const themeGrid = createElement('div', { className: 'settings-theme-grid' })
@@ -261,7 +255,7 @@ const createThemesSection = () => {
 	// TODO: temporary disable
 	// themeGrid.append(downloadCard, uploadCard, resetCard)
 
-	section.append(sectionTitle, themeGrid)
+	section.append(themeGrid)
 	return section
 }
 

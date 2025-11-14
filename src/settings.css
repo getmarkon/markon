@@ -2,50 +2,47 @@
 
 /* Settings dialog - native HTML dialog element */
 #settings-system {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 20px;
   background: var(--bg-alpha);
   border-radius: 20px;
-  padding: 32px;
+  padding: 20px;
   max-width: 700px;
-  width: 90vw;
+  width: calc(90vw - 40px);
+  max-height: calc(90vh - 40px);
   box-shadow: var(--shadow-strong);
   backdrop-filter: blur(10px);
   border: none;
   color: var(--text);
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
 
-  /* Remove default dialog styling */
   &::backdrop {
     background: var(--bg-alpha);
+    backdrop-filter: blur(10px);
   }
 }
 
-/* Settings header */
-.settings-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
-}
-
-.settings-title {
-  margin: 0;
-  color: var(--brand);
-  font-size: 24px;
-  font-weight: 700;
-  font-family: Bungee, monospace;
-}
-
 .settings-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
   border: none;
   color: var(--secondary);
   cursor: pointer;
   padding: 6px;
   border-radius: 50%;
   font-size: 20px;
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   display: grid;
   place-items: center;
   transition: all 0.2s ease;
+  z-index: 10;
+  background: var(--bg-alpha);
+  backdrop-filter: blur(10px);
 
   &:hover {
     color: var(--accent);
@@ -56,55 +53,63 @@
 /* Settings content */
 .settings-content {
   display: grid;
-  gap: 32px;
-  max-height: calc(70vh - 200px);
+  gap: 20px;
+  min-width: 0;
   overflow-y: auto;
-  padding-right: 20px;
-  margin-right: -20px;
+  overflow-x: hidden;
 }
 
 .settings-section {
   display: grid;
-  gap: 16px;
+  gap: 12px;
+  min-width: 0;
 }
 
 .settings-section-title {
   margin: 0;
   color: var(--accent);
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   font-family: Bungee, monospace;
   border-bottom: 1px solid var(--text-alpha);
-  padding-bottom: 8px;
+  padding-bottom: 4px;
 }
 
 /* Shortcuts */
 .settings-shortcuts {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 12px;
-  align-items: center;
+  min-width: 0;
 }
 
 .settings-item {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
   align-items: center;
-  gap: 12px;
-  padding: 16px 20px;
+  gap: 10px;
+  padding: 12px 16px;
   background: var(--bg-alpha);
   border-radius: 16px;
   transition:
     background 0.2s ease,
     transform 0.2s ease,
     box-shadow 0.2s ease;
-  width: 100%;
-  box-sizing: border-box;
+  min-width: 0;
 
   &:hover {
     background: var(--accent-alpha);
     transform: translateY(-2px);
     box-shadow: 0 4px 20px var(--accent-alpha);
   }
+}
+
+.settings-item > span:first-of-type {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 500;
 }
 
 .settings-key {
@@ -126,18 +131,20 @@
 /* Theme selector */
 .settings-theme-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+  min-width: 0;
 }
 
 .settings-theme-card {
   background: var(--bg-alpha);
   border: 2px solid transparent;
   border-radius: 16px;
-  padding: 16px;
+  padding: 12px;
   cursor: pointer;
   transition: all 0.2s ease;
   text-align: center;
+  min-width: 0;
 
   &:hover {
     background: var(--accent-alpha);
@@ -159,7 +166,8 @@
 }
 
 .settings-theme-preview {
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
   justify-content: center;
   gap: 4px;
 }
@@ -172,9 +180,8 @@
 }
 
 .settings-theme-card:has(.settings-theme-control-btn) {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
 }
 
 .settings-theme-control-btn {
@@ -191,22 +198,20 @@
   cursor: pointer;
   transition: all 0.2s ease;
   font-family: "Monaspace Krypton", system-ui, Helvetica, Arial, sans-serif;
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
   align-items: center;
-  justify-content: center;
   gap: 6px;
 
   iconify-icon {
     opacity: 0.9;
     transition: all 0.2s ease;
-    flex-shrink: 0;
   }
 
   span {
     font-size: 11px;
     font-weight: 600;
     white-space: nowrap;
-    display: inline !important;
   }
 
   &:hover {
@@ -222,11 +227,10 @@
 
 .settings-footer {
   text-align: center;
-  margin-top: 24px;
-  padding-top: 20px;
+  padding-top: 12px;
   border-top: 1px solid var(--text-alpha);
   color: var(--comment);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   font-family: "Monaspace Krypton", system-ui, Helvetica, Arial, sans-serif;
 
@@ -268,4 +272,21 @@
   background: var(--bg-light);
   border-radius: 4px;
   padding: 2px 6px;
+}
+
+/* Mobile: Fullscreen */
+@media (max-width: 640px) {
+  #settings-system {
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+    max-height: none;
+    border-radius: 0;
+    padding: 16px;
+    margin: 0;
+  }
+
+  .settings-shortcuts {
+    grid-template-columns: 1fr;
+  }
 }

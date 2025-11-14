@@ -15,7 +15,8 @@
         inset: 0;
         display: grid;
         place-items: center;
-        background: #ccbbee;
+        backdrop-filter: blur(10px);
+        /* background: #ccbbee; */
         z-index: 1000;
 
         img {
@@ -28,7 +29,11 @@
         position: absolute;
         width: 400px;
         height: 100px;
-        background: #ff1188;
+        background: radial-gradient(
+          circle at 50% 50%,
+          #ff1188 0%,
+          #4400ee 100%
+        );
         border-radius: 50%;
         filter: blur(150px);
         transform: translate(-40%, -50%);
@@ -72,7 +77,7 @@
   </head>
 
   <body>
-    <div id="splash"><img src="/wordmark.png" width="auto" alt="" /></div>
+    <div id="splash"><img src="/wordmark-bw.png" width="auto" alt="" /></div>
     <div id="bar">
       <div id="brand">
         <img src="/wordmark-bw.png" height="30" alt="" />
