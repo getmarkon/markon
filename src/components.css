@@ -83,6 +83,11 @@
   min-width: 0;
   overflow: visible;
   padding-right: 36px;
+  transition: padding-right .5s ease;
+}
+
+#bar.open #actions {
+  padding-right: 0;
 }
 
 /* Bar pull indicator */

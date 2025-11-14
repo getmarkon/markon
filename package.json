@@ -2,7 +2,7 @@
   "name": "markon",
   "private": true,
   "description": "Minimal distraction-free live Markdown editor",
-  "version": "1.12.0",
+  "version": "1.12.1",
   "type": "module",
   "bugs": "https://github.com/metaory/markon/issues",
   "homepage": "https://metaory.github.io/markon/",

@@ -15,6 +15,7 @@ const createToolbar = () => {
 		hideTimer = setTimeout(() => {
 			tool.style.top = toolHideTop
 			pull.style.top = pullShowTop
+			tool.classList.remove('open')
 		}, delay)
 	}
 
@@ -22,6 +23,7 @@ const createToolbar = () => {
 		clearTimeout(hideTimer)
 		tool.style.top = toolShowTop
 		pull.style.top = pullHideTop
+		tool.classList.add('open')
 	}
 
 	tool.addEventListener('pointerenter', show)
