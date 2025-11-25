@@ -601,3 +601,53 @@ html:not([data-theme]) {
 	--info: #1199cc;
 	--error: #ff1100;
 }
+
+html[data-theme="tomorrow"][data-mode="dark"] {
+	--bg:        #1d1f21;
+	--bg-light:  #282a2e;
+	--text:      #c5c8c6;
+	--brand:     #cc6666;
+	--accent:    #8abeb7;
+	--primary:   #c5c8c6;
+	--secondary: #b5bd68;
+	--comment:   #b4b7b4;
+	--meta:      #c5c8c6;
+	--operator:  #c5c8c6;
+	--keyword:   #b294bb;
+	--regex:     #8abeb7;
+	--property:  #c5c8c6;
+	--string:    #b5bd68;
+	--literal:   #de935f;
+	--hint:      #f0c674;
+
+
+	--success:   #b5bd68;
+	--warning:   #de935f;
+	--info:      #8abeb7;
+	--error:     #cc6666;
+}
+
+html[data-theme="tomorrow"][data-mode="light"] {
+	--bg:        #ffffff;
+	--bg-light:  #e0e0e0;
+	--text:      #373b41;
+	--brand:     #c82829;
+	--accent:    #3e999f;
+	--primary:   #373b41;
+	--secondary: #718c00;
+	--comment:   #969896;
+	--meta:      #373b41;
+	--operator:  #373b41;
+	--keyword:   #8959a8;
+	--regex:     #3e999f;
+	--property:  #373b41;
+	--string:    #718c00;
+	--literal:   #f5871f;
+	--hint:      #eab700;
+
+
+	--success:   #718c00;
+	--warning:   #f5871f;
+	--info:      #3e999f;
+	--error:     #c82829;
+}
