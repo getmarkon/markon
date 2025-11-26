@@ -175,7 +175,7 @@ Themes are automatically detected and appear in the settings dialog. Both `dark`
 - [x] **Mobile**: touch gestures
 - [x] **PWA**: installable, offline cache
 - [x] **Scroll**: toggle scroll follow
-- [ ] **Share**: url hash content
+- [ ] **Share**: ~~url hash content~~
 - [x] **Snap**: split resize snapping
 - [x] **Shortcuts**: command palette
 - [x] **Theming**: custom CSS look
