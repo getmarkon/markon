@@ -53,6 +53,8 @@ npm run fix      # fix lint issues
 > [!TIP]
 > **Offline behavior**: Languages you've used before will work offline. New languages require an internet connection to load initially.
 
+---
+
 <details>
 <summary id="themes">Themes</summary>
 
@@ -159,6 +161,8 @@ html[data-theme="panda"][data-mode="light"] {
 Themes are automatically detected and appear in the settings dialog. Both `dark` and `light` modes should be defined for each theme.
 
 </details>
+
+---
 
 ## Roadmap
 
