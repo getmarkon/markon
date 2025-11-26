@@ -32,15 +32,6 @@
 - **Hotkeys**: keyboard shortcuts
 - **Offline**: no network required
 
-## Development
-
-```bash
-npm run dev      # start dev server
-npm run build    # build for production
-npm run check    # lint code
-npm run fix      # fix lint issues
-```
-
 ## Language Loading & Caching
 
 **markon** uses **lazy loading** for syntax highlighting to keep the app fast and lightweight:
@@ -54,6 +45,15 @@ npm run fix      # fix lint issues
 > **Offline behavior**: Languages you've used before will work offline. New languages require an internet connection to load initially.
 
 ---
+
+## Development
+
+```bash
+npm run dev      # start dev server
+npm run build    # build for production
+npm run check    # lint code
+npm run fix      # fix lint issues
+```
 
 <details>
 <summary id="themes">Themes</summary>
