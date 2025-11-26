@@ -20,6 +20,7 @@
 <hr>
 <div align="center">
   <a href="#development">Development</a> • <a href="#themes">Themes</a> • <a href="#roadmap">Roadmap</a>
+	<img src="public/screenshots-solarized.png" width="80%" />
 </div>
 
 ## Features
