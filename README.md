@@ -62,6 +62,8 @@ npm run fix      # fix lint issues
 <details>
 <summary id="themes">Themes</summary>
 
+![screenshot](public/themes.png)
+
 **markon** supports multiple theme presets with dark/light modes. Custom themes can be created using CSS variables.
 
 ### Preview Themes
