@@ -20,7 +20,7 @@
 <hr>
 <div align="center">
   <a href="#development">Development</a> • <a href="#themes">Themes</a> • <a href="#roadmap">Roadmap</a>
-	<img src="public/screenshots-solarized.png" width="80%" />
+	<img src="public/screenshots.png" width="80%" />
 </div>
 
 ## Features
@@ -73,6 +73,7 @@ Visit `/themes` to preview all available themes side-by-side in both dark and li
 ### Color Preview
 
 The theme selection dialog shows 4 preview colors for each theme:
+
 - `--brand`: Primary brand color (buttons, highlights)
 - `--accent`: Accent color (links, interactive elements)
 - `--primary`: Primary UI color
@@ -83,17 +84,20 @@ The theme selection dialog shows 4 preview colors for each theme:
 Themes are defined using CSS custom properties. All available variables:
 
 **Base colors:**
+
 - `--bg`: Background color
 - `--bg-light`: Light background (panels, cards)
 - `--text`: Text color
 
 **Main colors:**
+
 - `--brand`: Brand/primary action color
 - `--accent`: Accent/interactive color
 - `--primary`: Primary UI color
 - `--secondary`: Secondary UI color
 
 **Syntax highlighting:**
+
 - `--comment`: Code comments
 - `--meta`: Metadata/imports
 - `--operator`: Operators
@@ -105,6 +109,7 @@ Themes are defined using CSS custom properties. All available variables:
 - `--hint`: Hints/tooltips
 
 **Status colors:**
+
 - `--success`: Success indicators
 - `--warning`: Warning indicators
 - `--info`: Info indicators
@@ -116,51 +121,51 @@ Define themes in `src/themes.css` using this structure:
 
 ```css
 html[data-theme="panda"][data-mode="dark"] {
-	--bg: #1a0f1f;
-	--bg-light: #2d1a2d;
-	--text: #f0f0e8;
-	--brand: #ff1100;
-	--accent: #8866ff;
-	--primary: #bb66ff;
-	--secondary: #22aa88;
-	--comment: #bbbbbb;
-	--meta: #ff1100;
-	--operator: #bb88ee;
-	--keyword: #ff88bb;
-	--regex: #ff99cc;
-	--property: #4488ff;
-	--string: #22aa88;
-	--literal: #ffbb66;
-	--hint: #8866dd;
+  --bg: #1a0f1f;
+  --bg-light: #2d1a2d;
+  --text: #f0f0e8;
+  --brand: #ff1100;
+  --accent: #8866ff;
+  --primary: #bb66ff;
+  --secondary: #22aa88;
+  --comment: #bbbbbb;
+  --meta: #ff1100;
+  --operator: #bb88ee;
+  --keyword: #ff88bb;
+  --regex: #ff99cc;
+  --property: #4488ff;
+  --string: #22aa88;
+  --literal: #ffbb66;
+  --hint: #8866dd;
 
-	--success: #22bb11;
-	--warning: #ffaa00;
-	--info: #1199cc;
-	--error: #ff1100;
+  --success: #22bb11;
+  --warning: #ffaa00;
+  --info: #1199cc;
+  --error: #ff1100;
 }
 
 html[data-theme="panda"][data-mode="light"] {
-	--bg: #f5f5f0;
-	--bg-light: #ffffff;
-	--text: #1a1a1a;
-	--brand: #d73a49;
-	--accent: #0366d6;
-	--primary: #8b5cf6;
-	--secondary: #28a745;
-	--comment: #6a737d;
-	--meta: #6f42c1;
-	--operator: #0366d6;
-	--keyword: #d73a49;
-	--regex: #e36209;
-	--property: #0366d6;
-	--string: #032f62;
-	--literal: #6f42c1;
-	--hint: #28a745;
+  --bg: #f5f5f0;
+  --bg-light: #ffffff;
+  --text: #1a1a1a;
+  --brand: #d73a49;
+  --accent: #0366d6;
+  --primary: #8b5cf6;
+  --secondary: #28a745;
+  --comment: #6a737d;
+  --meta: #6f42c1;
+  --operator: #0366d6;
+  --keyword: #d73a49;
+  --regex: #e36209;
+  --property: #0366d6;
+  --string: #032f62;
+  --literal: #6f42c1;
+  --hint: #28a745;
 
-	--success: #22bb11;
-	--warning: #ffaa00;
-	--info: #1199cc;
-	--error: #cc6600;
+  --success: #22bb11;
+  --warning: #ffaa00;
+  --info: #1199cc;
+  --error: #cc6600;
 }
 ```
 
