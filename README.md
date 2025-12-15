@@ -6,16 +6,12 @@
     Minimal distraction-free live Markdown editor
   </strong>
   <br>
-  <br>
-  <img src="public/logo.png" alt="screenshot" width="18%" />
-  <br>
-  <br>
   <a href="https://getmarkon.com">
     <img src="https://img.shields.io/badge/PWA-Installable-blue?style=for-the-badge&logo=pwa&logoColor=white" alt="PWA Installable" />
   </a>
-  <h3>
+  <h2>
     <a href="https://getmarkon.com">getmarkon.com</a>
-  </h3>
+  </h2>
 </div>
 <hr>
 <div align="center">
