@@ -189,7 +189,7 @@ Themes are automatically detected and appear in the settings dialog. Both `dark`
 > [!NOTE]
 > _in no particular order_
 
-<a href="https://metaory.github.io/markon">metaory.github.io/markon</a>
+<a href="https://getmarkon.com">getmarkon.com</a>
 
 ---
 

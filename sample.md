@@ -140,7 +140,7 @@ fn main() {
 
 ### Text Formatting
 
-This is **bold text**, _italic text_, ~~strikethrough~~, `inline code`, and a [link](https://github.com/metaory/markon).
+This is **bold text**, _italic text_, ~~strikethrough~~, `inline code`, and a [link](https://github.com/getmarkon/markon).
 
 ### Lists
 

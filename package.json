@@ -4,9 +4,9 @@
   "description": "Minimal distraction-free live Markdown editor",
   "version": "1.21.4",
   "type": "module",
-  "bugs": "https://github.com/metaory/markon/issues",
+  "bugs": "https://github.com/getmarkon/markon/issues",
   "homepage": "https://getmarkon.com",
-  "repository": "git+https://github.com/metaory/markon.git",
+  "repository": "git+https://github.com/getmarkon/markon.git",
   "scripts": {
     "dev": "vite",
     "gen:hljs": "node scripts/hljs.js",

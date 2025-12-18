@@ -286,7 +286,7 @@ const ACTIONS_CONFIG = [
 		gradient: 'linear-gradient(135deg, rgba(107, 114, 128, 0.2), rgba(75, 85, 99, 0.2))',
 		showInToolbar: false,
 		handler: () => {
-			window.open('https://github.com/metaory/markon', '_blank')
+			window.open('https://github.com/getmarkon/markon', '_blank')
 		},
 	},
 ]

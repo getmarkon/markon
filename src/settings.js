@@ -40,13 +40,13 @@ export const createSettingsDialog = showToast => {
 	const text1 = document.createTextNode('Made with ')
 	const text2 = document.createTextNode(' by ')
 	const githubProfileLink = createElement('a', {
-		href: 'https://github.com/metaory',
+		href: 'https://github.com/getmarkon',
 		target: '_blank',
-		textContent: 'github.metaory',
+		textContent: 'github.com/getmarkon',
 	})
 	const text3 = document.createTextNode('/')
 	const githubRepoLink = createElement('a', {
-		href: 'https://github.com/metaory/markon',
+		href: 'https://github.com/getmarkon/markon',
 		target: '_blank',
 		textContent: 'markon',
 	})
@@ -66,7 +66,7 @@ export const createSettingsDialog = showToast => {
 		style: 'vertical-align: middle; margin-right: 4px;',
 	})
 	const issuesLink = createElement('a', {
-		href: 'https://github.com/metaory/markon/issues/new/choose',
+		href: 'https://github.com/getmarkon/markon/issues/new/choose',
 		target: '_blank',
 		textContent: 'Submit issues or feature requests',
 		className: 'footer-issue',
@@ -277,7 +277,7 @@ const createThemesSection = () => {
 		const { downloadText } = await import('./utils.js')
 
 		// Fetch the original themes.css file directly from GitHub
-		const response = await fetch('https://raw.githubusercontent.com/metaory/markon/refs/heads/master/src/themes.css')
+		const response = await fetch('https://raw.githubusercontent.com/getmarkon/markon/refs/heads/master/src/themes.css')
 		const cssToDownload = await response.text()
 		downloadText('themes.css', cssToDownload)
 	})
